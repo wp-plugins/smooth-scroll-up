@@ -5,7 +5,7 @@
   Author URI: http://www.kouratoras.gr
   Author: Konstantinos Kouratoras
   Contributors: kouratoras
-  Tags: page, scroll up, scroll, up, navigate, long
+  Tags: page, scroll up, scroll, up, navigation, back to top
   Requires at least: 2.9.0
   Tested up to: 3.5.1
   Stable tag: 0.1
