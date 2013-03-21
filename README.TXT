@@ -1,0 +1,47 @@
+=== Smooth Scroll Up ===
+Plugin Name: Smooth Scroll Up
+Plugin URI: http://wordpress.org/extend/plugins/smooth-scroll-up/
+Author URI: http://www.kouratoras.gr
+Author: Konstantinos Kouratoras
+Contributors: kouratoras
+Tags: page, scroll up, scroll, up, navigate, long
+Requires at least: 2.9.0
+Tested up to: 3.5.1
+Stable tag: 0.1
+Version: 0.1
+License: GPLv2 or later
+
+Scroll Up plugin lightweight plugin that creates a customizable "Scroll to top" feature in any post/page of your WordPress website.
+
+== Description ==
+
+Scroll Up plugin lightweight plugin that creates a customizable "Scroll to top" feature in any post/page of your WordPress website.
+
+== Installation ==
+
+1. Upload the folder to the `/wp-content/plugins/` directory
+2. Activate the plugin through the 'Plugins' menu in WordPress
+
+== Frequently Asked Questions ==
+
+= How many types of "Scroll top top" are there? = 
+
+There are three types: text link, pill and tab.
+
+= How do i choose type? =
+
+Go to "Settings -> "Scroll Up Option" and choose the option you want.
+
+== Screenshots ==
+
+1. Scroll Up settings page
+2. Scroll Up in action
+
+== Changelog ==
+
+= 0.1 = 
+* Initial Release
+
+== Upgrade Notice ==
+
+Initial Release
