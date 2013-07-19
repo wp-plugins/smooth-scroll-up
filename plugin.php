@@ -5,11 +5,11 @@
   Author URI: http://www.kouratoras.gr
   Author: Konstantinos Kouratoras
   Contributors: kouratoras
-  Tags: page, scroll up, scroll, up, navigation, back to top, back, to, top
+  Tags: page, scroll up, scroll, up, navigation, back to top, back, to, top, scroll to top
   Requires at least: 2.9.0
   Tested up to: 3.5.2
-  Stable tag: 0.2
-  Version: 0.2
+  Stable tag: 0.3
+  Version: 0.3
   License: GPLv2 or later
   Description: Scroll Up plugin lightweight plugin that creates a customizable "Scroll to top" feature in any post/page of your WordPress website.
 
@@ -54,14 +54,24 @@ class ScrollUp {
 
 	function plugin_options_page() {
 
-		$opt_name = array('scrollup_type' => 'scrollup_type');
+		$opt_name = array(
+				'scrollup_type' => 'scrollup_type',
+				'scrollup_show' => 'scrollup_show'
+				);
 		$hidden_field_name = 'scrollup_submit_hidden';
 
-		$opt_val = array('scrollup_type' => get_option($opt_name['scrollup_type']));
+		$opt_val = array(
+				'scrollup_type' => get_option($opt_name['scrollup_type']),
+				'scrollup_show' => get_option($opt_name['scrollup_show'])
+			);
 
 		if (isset($_POST[$hidden_field_name]) && $_POST[$hidden_field_name] == 'Y') {
-			$opt_val = array('scrollup_type' => $_POST[$opt_name['scrollup_type']]);
+			$opt_val = array(
+					'scrollup_type' => $_POST[$opt_name['scrollup_type']],
+					'scrollup_show' => $_POST[$opt_name['scrollup_show']]
+				    );
 			update_option($opt_name['scrollup_type'], $opt_val['scrollup_type']);
+			update_option($opt_name['scrollup_show'], $opt_val['scrollup_show']);
 			?>
 			<div id="message" class="updated fade">
 				<p><strong>
@@ -84,6 +94,13 @@ class ScrollUp {
 						<option value="tab" <?php echo ($opt_val['scrollup_type'] == "tab") ? 'selected="selected"' : ''; ?> ><?php _e('Tab', 'scroll-up-locale'); ?></option>
 					</select>
 				</p>
+				
+				<p><label for="">Show in homepage</label>
+					<select name="<?php echo $opt_name['scrollup_show']; ?>">
+						<option value="0" <?php echo ($opt_val['scrollup_show'] == "0") ? 'selected="selected"' : ''; ?> ><?php _e('No', 'scroll-up-locale'); ?></option>
+						<option value="1" <?php echo ($opt_val['scrollup_show'] == "1") ? 'selected="selected"' : ''; ?> ><?php _e('Yes', 'scroll-up-locale'); ?></option>
+					</select>
+				</p>
 
 				<p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="<?php _e('Save Changes', 'scroll-up-locale'); ?>"></p>
 			</form>
@@ -97,13 +114,22 @@ class ScrollUp {
 
 		public function register_plugin_scripts() {
 
-			wp_enqueue_script('jquery');
+			$scrollup_show = get_option('scrollup_show', '0');
+			
+			if(
+				$scrollup_show=="1"
+				||
+				$scrollup_show=="0" && (!is_home() || !is_front_page())
+			){
+			
+				wp_enqueue_script('jquery');
 
-			wp_register_script('scrollup', plugins_url(PLUGIN_DIR_NAME . '/js/jquery.scrollUp.min.js'), '', '', true);
-			wp_enqueue_script('scrollup');
+				wp_register_script('scrollup', plugins_url(PLUGIN_DIR_NAME . '/js/jquery.scrollUp.min.js'), '', '', true);
+				wp_enqueue_script('scrollup');
 
-			wp_register_script('scrollupscript', plugins_url(PLUGIN_DIR_NAME . '/js/jquery.scrollUpScript.js'), '', '', true);
-			wp_enqueue_script('scrollupscript');
+				wp_register_script('scrollupscript', plugins_url(PLUGIN_DIR_NAME . '/js/jquery.scrollUpScript.js'), '', '', true);
+				wp_enqueue_script('scrollupscript');
+			}
 		}
 
 		/* -------------------------------------------------- */
@@ -119,12 +145,12 @@ class ScrollUp {
 				wp_enqueue_style('link');
 			}
 
-			if ($scrollup_type == 'pill') {
+			else if ($scrollup_type == 'pill') {
 				wp_register_style('pill', plugins_url(PLUGIN_DIR_NAME . '/css/pill.css'));
 				wp_enqueue_style('pill');
 			}
 
-			if ($scrollup_type == 'tab') {
+			else {
 				wp_register_style('tab', plugins_url(PLUGIN_DIR_NAME . '/css/tab.css'));
 				wp_enqueue_style('tab');
 			}

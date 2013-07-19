@@ -4,11 +4,11 @@ Plugin URI: http://wordpress.org/extend/plugins/smooth-scroll-up/
 Author URI: http://www.kouratoras.gr
 Author: Konstantinos Kouratoras
 Contributors: kouratoras
-Tags: page, scroll up, scroll, up, navigation, back to top, back, to, top
+Tags: page, scroll up, scroll, up, navigation, back to top, back, to, top, scroll to top
 Requires at least: 2.9.0
 Tested up to: 3.5.2
-Stable tag: 0.2
-Version: 0.2
+Stable tag: 0.3
+Version: 0.3
 License: GPLv2 or later
 
 Scroll Up plugin lightweight plugin that creates a customizable "Scroll to top" feature in any post/page of your WordPress website.
@@ -38,6 +38,9 @@ Go to "Settings -> "Scroll Up Option" and choose the option you want.
 2. Scroll Up in action
 
 == Changelog ==
+
+= 0.3 =
+* Added show in homepage option
 
 = 0.2 = 
 * Script update
