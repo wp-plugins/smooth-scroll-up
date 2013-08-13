@@ -7,9 +7,9 @@
   Contributors: kouratoras
   Tags: page, scroll up, scroll, up, navigation, back to top, back, to, top, scroll to top
   Requires at least: 2.9.0
-  Tested up to: 3.5.2
-  Stable tag: 0.3
-  Version: 0.3
+  Tested up to: 3.6
+  Stable tag: 0.4
+  Version: 0.4
   License: GPLv2 or later
   Description: Scroll Up plugin lightweight plugin that creates a customizable "Scroll to top" feature in any post/page of your WordPress website.
 
@@ -43,9 +43,21 @@ class ScrollUp {
 		//Register scripts and styles
 		add_action('wp_enqueue_scripts', array(&$this, 'register_plugin_scripts'));
 		add_action('wp_enqueue_scripts', array(&$this, 'register_plugin_styles'));
+		
+		//Inline CSS
+		add_action( 'wp_head', array(&$this, 'plugin_css'));
 
 		//Options Page
 		add_action('admin_menu', array(&$this, 'plugin_add_options'));
+	}
+
+	function plugin_css()
+	{
+		$scrollup_position = get_option('scrollup_position', 'left');
+		if($scrollup_position=='left')
+			echo '<style>#scrollUp {left: 20px;}</style>';
+		else
+			echo '<style>#scrollUp {right: 20px;}</style>';
 	}
 
 	public function plugin_add_options() {
@@ -56,22 +68,26 @@ class ScrollUp {
 
 		$opt_name = array(
 				'scrollup_type' => 'scrollup_type',
-				'scrollup_show' => 'scrollup_show'
+				'scrollup_show' => 'scrollup_show',
+				'scrollup_position' => 'scrollup_position'
 				);
 		$hidden_field_name = 'scrollup_submit_hidden';
 
 		$opt_val = array(
 				'scrollup_type' => get_option($opt_name['scrollup_type']),
-				'scrollup_show' => get_option($opt_name['scrollup_show'])
+				'scrollup_show' => get_option($opt_name['scrollup_show']),
+				'scrollup_position' => get_option($opt_name['scrollup_position'])
 			);
 
 		if (isset($_POST[$hidden_field_name]) && $_POST[$hidden_field_name] == 'Y') {
 			$opt_val = array(
 					'scrollup_type' => $_POST[$opt_name['scrollup_type']],
-					'scrollup_show' => $_POST[$opt_name['scrollup_show']]
+					'scrollup_show' => $_POST[$opt_name['scrollup_show']],
+					'scrollup_position' => $_POST[$opt_name['scrollup_position']]
 				    );
 			update_option($opt_name['scrollup_type'], $opt_val['scrollup_type']);
 			update_option($opt_name['scrollup_show'], $opt_val['scrollup_show']);
+			update_option($opt_name['scrollup_position'], $opt_val['scrollup_position']);
 			?>
 			<div id="message" class="updated fade">
 				<p><strong>
@@ -87,11 +103,18 @@ class ScrollUp {
 			<form name="att_img_options" method="post" action="<?php echo str_replace('%7E', '~', $_SERVER['REQUEST_URI']); ?>">
 				<input type="hidden" name="<?php echo $hidden_field_name; ?>" value="Y">
 
-				<p><label for="">Scroll Up Type</label>
+				<p><label for="">Scroll Up type</label>
 					<select name="<?php echo $opt_name['scrollup_type']; ?>">
 						<option value="link" <?php echo ($opt_val['scrollup_type'] == "link") ? 'selected="selected"' : ''; ?> ><?php _e('Text link', 'scroll-up-locale'); ?></option>
 						<option value="pill" <?php echo ($opt_val['scrollup_type'] == "pill") ? 'selected="selected"' : ''; ?> ><?php _e('Pill', 'scroll-up-locale'); ?></option>
 						<option value="tab" <?php echo ($opt_val['scrollup_type'] == "tab") ? 'selected="selected"' : ''; ?> ><?php _e('Tab', 'scroll-up-locale'); ?></option>
+					</select>
+				</p>
+				
+				<p><label for="">Scroll Up position</label>
+					<select name="<?php echo $opt_name['scrollup_position']; ?>">
+						<option value="left" <?php echo ($opt_val['scrollup_position'] == "left") ? 'selected="selected"' : ''; ?> ><?php _e('Left', 'scroll-up-locale'); ?></option>
+						<option value="right" <?php echo ($opt_val['scrollup_position'] == "right") ? 'selected="selected"' : ''; ?> ><?php _e('Right', 'scroll-up-locale'); ?></option>
 					</select>
 				</p>
 				
