@@ -8,8 +8,8 @@
   Tags: page, scroll up, scroll, up, navigation, back to top, back, to, top, scroll to top
   Requires at least: 2.9.0
   Tested up to: 3.6
-  Stable tag: 0.4
-  Version: 0.4
+  Stable tag: 0.5
+  Version: 0.5
   License: GPLv2 or later
   Description: Scroll Up plugin lightweight plugin that creates a customizable "Scroll to top" feature in any post/page of your WordPress website.
 
@@ -46,6 +46,9 @@ class ScrollUp {
 		
 		//Inline CSS
 		add_action( 'wp_head', array(&$this, 'plugin_css'));
+		
+		//Start up script
+		add_action( 'wp_footer', array(&$this, 'plugin_js'));
 
 		//Options Page
 		add_action('admin_menu', array(&$this, 'plugin_add_options'));
@@ -59,6 +62,30 @@ class ScrollUp {
 		else
 			echo '<style>#scrollUp {right: 20px;}</style>';
 	}
+	
+	function plugin_js()
+	{
+		$scrollup_text = get_option('scrollup_text', 'Scroll to top!');
+		echo '<script> var $nocnflct = jQuery.noConflict();
+			$nocnflct(function () {
+			    $nocnflct.scrollUp({
+				scrollName: \'scrollUp\', // Element ID
+				scrollDistance: 300, // Distance from top/bottom before showing element (px)
+				scrollFrom: \'top\', // top or bottom
+				scrollSpeed: 300, // Speed back to top (ms)
+				easingType: \'linear\', // Scroll to top easing (see http://easings.net/)
+				animation: \'fade\', // Fade, slide, none
+				animationInSpeed: 200, // Animation in speed (ms)
+				animationOutSpeed: 200, // Animation out speed (ms)
+				scrollText: \''.$scrollup_text.'\', // Text for element, can contain HTML
+				scrollTitle: false, // Set a custom <a> title if required. Defaults to scrollText
+				scrollImg: false, // Set true to use image
+				activeOverlay: false, // Set CSS color to display scrollUp active point
+				zIndex: 2147483647 // Z-Index for the overlay
+			    });
+			});
+			</script>';
+	}
 
 	public function plugin_add_options() {
 		add_options_page('Scroll Up Options', 'Scroll Up Options', 8, 'scrollupoptions', array(&$this, 'plugin_options_page'));
@@ -67,6 +94,7 @@ class ScrollUp {
 	function plugin_options_page() {
 
 		$opt_name = array(
+				'scrollup_text' => 'scrollup_text',
 				'scrollup_type' => 'scrollup_type',
 				'scrollup_show' => 'scrollup_show',
 				'scrollup_position' => 'scrollup_position'
@@ -74,6 +102,7 @@ class ScrollUp {
 		$hidden_field_name = 'scrollup_submit_hidden';
 
 		$opt_val = array(
+				'scrollup_text' => get_option($opt_name['scrollup_text']),
 				'scrollup_type' => get_option($opt_name['scrollup_type']),
 				'scrollup_show' => get_option($opt_name['scrollup_show']),
 				'scrollup_position' => get_option($opt_name['scrollup_position'])
@@ -81,10 +110,12 @@ class ScrollUp {
 
 		if (isset($_POST[$hidden_field_name]) && $_POST[$hidden_field_name] == 'Y') {
 			$opt_val = array(
+					'scrollup_text' => $_POST[$opt_name['scrollup_text']],
 					'scrollup_type' => $_POST[$opt_name['scrollup_type']],
 					'scrollup_show' => $_POST[$opt_name['scrollup_show']],
 					'scrollup_position' => $_POST[$opt_name['scrollup_position']]
 				    );
+			update_option($opt_name['scrollup_text'], $opt_val['scrollup_text']);
 			update_option($opt_name['scrollup_type'], $opt_val['scrollup_type']);
 			update_option($opt_name['scrollup_show'], $opt_val['scrollup_show']);
 			update_option($opt_name['scrollup_position'], $opt_val['scrollup_position']);
@@ -103,6 +134,10 @@ class ScrollUp {
 			<form name="att_img_options" method="post" action="<?php echo str_replace('%7E', '~', $_SERVER['REQUEST_URI']); ?>">
 				<input type="hidden" name="<?php echo $hidden_field_name; ?>" value="Y">
 
+				<p><label for="">Scroll Up text:</label>
+					<input type="text" name="<?php echo $opt_name['scrollup_text']; ?>" id="<?php echo $opt_name['scrollup_text']; ?>" value="<?php echo $opt_val['scrollup_text']; ?>"/>
+				</p>
+				
 				<p><label for="">Scroll Up type</label>
 					<select name="<?php echo $opt_name['scrollup_type']; ?>">
 						<option value="link" <?php echo ($opt_val['scrollup_type'] == "link") ? 'selected="selected"' : ''; ?> ><?php _e('Text link', 'scroll-up-locale'); ?></option>
@@ -149,9 +184,6 @@ class ScrollUp {
 
 				wp_register_script('scrollup', plugins_url(PLUGIN_DIR_NAME . '/js/jquery.scrollUp.min.js'), '', '', true);
 				wp_enqueue_script('scrollup');
-
-				wp_register_script('scrollupscript', plugins_url(PLUGIN_DIR_NAME . '/js/jquery.scrollUpScript.js'), '', '', true);
-				wp_enqueue_script('scrollupscript');
 			}
 		}
 
