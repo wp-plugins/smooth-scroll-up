@@ -7,9 +7,9 @@
   Contributors: kouratoras
   Tags: page, scroll up, scroll, up, navigation, back to top, back, to, top, scroll to top
   Requires at least: 2.9.0
-  Tested up to: 3.6.1
-  Stable tag: 0.5.1
-  Version: 0.5.1
+  Tested up to: 3.7
+  Stable tag: 0.5.2
+  Version: 0.5.2
   License: GPLv2 or later
   Description: Scroll Up plugin lightweight plugin that creates a customizable "Scroll to top" feature in any post/page of your WordPress website.
 
@@ -106,7 +106,7 @@ class ScrollUp {
 	}
 
 	public function plugin_add_options() {
-		add_options_page('Scroll Up Options', 'Scroll Up Options', 8, 'scrollupoptions', array(&$this, 'plugin_options_page'));
+		add_options_page('Scroll Up Options', 'Scroll Up Options', 'manage_options', 'scrollupoptions', array(&$this, 'plugin_options_page'));
 	}
 
 	function plugin_options_page() {
