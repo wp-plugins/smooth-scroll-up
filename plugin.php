@@ -6,10 +6,10 @@
   Author: Konstantinos Kouratoras
   Contributors: kouratoras
   Tags: page, scroll up, scroll, up, navigation, back to top, back, to, top, scroll to top
-  Requires at least: 2.9.0
-  Tested up to: 3.7
-  Stable tag: 0.5.2
-  Version: 0.5.2
+  Requires at least: 3.2
+  Tested up to: 3.7.1
+  Stable tag: 0.5.3
+  Version: 0.5.3
   License: GPLv2 or later
   Description: Scroll Up plugin lightweight plugin that creates a customizable "Scroll to top" feature in any post/page of your WordPress website.
 
@@ -29,7 +29,7 @@
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-define('PLUGIN_DIR_NAME', 'smooth-scroll-up');
+define('SMTH_SCRL_UP_PLUGIN_DIR_', 'smooth-scroll-up');
 
 class ScrollUp {
 	/* -------------------------------------------------- */
@@ -43,59 +43,78 @@ class ScrollUp {
 		//Register scripts and styles
 		add_action('wp_enqueue_scripts', array(&$this, 'register_plugin_scripts'));
 		add_action('wp_enqueue_scripts', array(&$this, 'register_plugin_styles'));
-		
+
 		//Action links
 		add_filter('plugin_action_links', array(&$this, 'plugin_action_links'), 10, 2);
-		
+
 		//Inline CSS
-		add_action( 'wp_head', array(&$this, 'plugin_css'));
-		
+		add_action('wp_head', array(&$this, 'plugin_css'));
+
 		//Start up script
-		add_action( 'wp_footer', array(&$this, 'plugin_js'));
+		add_action('wp_footer', array(&$this, 'plugin_js'));
 
 		//Options Page
 		add_action('admin_menu', array(&$this, 'plugin_add_options'));
 	}
-	
+
 	public function plugin_action_links($links, $file) {
 		static $current_plugin;
 
 		if (!$current_plugin) {
 			$current_plugin = plugin_basename(__FILE__);
 		}
-		
+
 		if ($file == $current_plugin) {
-			$settings_link = '<a href="' . get_bloginfo('wpurl') . '/wp-admin/options-general.php?page=scrollupoptions">'.__('Settings','scroll-up-locale').'</a>';
+			$settings_link = '<a href="' . get_bloginfo('wpurl') . '/wp-admin/options-general.php?page=scrollupoptions">' . __('Settings', 'scroll-up-locale') . '</a>';
 			array_unshift($links, $settings_link);
 		}
 
 		return $links;
 	}
 
-	function plugin_css()
-	{
-		$scrollup_position = get_option('scrollup_position', 'left');
-		if($scrollup_position=='left')
-			echo '<style>#scrollUp {left: 20px;}</style>';
-		else
-			echo '<style>#scrollUp {right: 20px;}</style>';
+	function plugin_css() {
+		$scrollup_show = get_option('scrollup_show', '0');
+
+		if (
+			$scrollup_show == "1"
+			||
+			$scrollup_show == "0" && (!is_home() || !is_front_page())
+		) {
+			$scrollup_position = get_option('scrollup_position', 'left');
+			if ($scrollup_position == 'left')
+				echo '<style>#scrollUp {left: 20px;}</style>';
+			else
+				echo '<style>#scrollUp {right: 20px;}</style>';
+		}
 	}
-	
-	function plugin_js()
-	{
-		$scrollup_text = get_option('scrollup_text', 'Scroll to top!');
-		echo '<script> var $nocnflct = jQuery.noConflict();
+
+	function plugin_js() {
+		$scrollup_show = get_option('scrollup_show', '0');
+
+		if (
+			$scrollup_show == "1"
+			||
+			$scrollup_show == "0" && (!is_home() || !is_front_page())
+		) {
+			$scrollup_text = get_option('scrollup_text', 'Scroll to top');
+			
+			$scrollup_distance = get_option('scrollup_distance', '300');
+			$scrollup_distance = ($scrollup_distance != '' ? $scrollup_distance : '300');
+
+			$scrollup_animation = get_option('scrollup_animation', 'fade');
+			
+			echo '<script> var $nocnflct = jQuery.noConflict();
 			$nocnflct(function () {
 			    $nocnflct.scrollUp({
 				scrollName: \'scrollUp\', // Element ID
-				scrollDistance: 300, // Distance from top/bottom before showing element (px)
+				scrollDistance: '.$scrollup_distance.', // Distance from top/bottom before showing element (px)
 				scrollFrom: \'top\', // top or bottom
 				scrollSpeed: 300, // Speed back to top (ms)
 				easingType: \'linear\', // Scroll to top easing (see http://easings.net/)
-				animation: \'fade\', // Fade, slide, none
+				animation: \''.$scrollup_animation.'\', // Fade, slide, none
 				animationInSpeed: 200, // Animation in speed (ms)
 				animationOutSpeed: 200, // Animation out speed (ms)
-				scrollText: \''.$scrollup_text.'\', // Text for element, can contain HTML
+				scrollText: \'' . $scrollup_text . '\', // Text for element, can contain HTML
 				scrollTitle: false, // Set a custom <a> title if required. Defaults to scrollText
 				scrollImg: false, // Set true to use image
 				activeOverlay: false, // Set CSS color to display scrollUp active point
@@ -103,6 +122,7 @@ class ScrollUp {
 			    });
 			});
 			</script>';
+		}
 	}
 
 	public function plugin_add_options() {
@@ -112,31 +132,39 @@ class ScrollUp {
 	function plugin_options_page() {
 
 		$opt_name = array(
-				'scrollup_text' => 'scrollup_text',
-				'scrollup_type' => 'scrollup_type',
-				'scrollup_show' => 'scrollup_show',
-				'scrollup_position' => 'scrollup_position'
-				);
+		    'scrollup_text' => 'scrollup_text',
+		    'scrollup_type' => 'scrollup_type',
+		    'scrollup_show' => 'scrollup_show',
+		    'scrollup_position' => 'scrollup_position',
+		    'scrollup_distance' => 'scrollup_distance',
+		    'scrollup_animation' => 'scrollup_animation'
+		);
 		$hidden_field_name = 'scrollup_submit_hidden';
 
 		$opt_val = array(
-				'scrollup_text' => get_option($opt_name['scrollup_text']),
-				'scrollup_type' => get_option($opt_name['scrollup_type']),
-				'scrollup_show' => get_option($opt_name['scrollup_show']),
-				'scrollup_position' => get_option($opt_name['scrollup_position'])
-			);
+		    'scrollup_text' => get_option($opt_name['scrollup_text']),
+		    'scrollup_type' => get_option($opt_name['scrollup_type']),
+		    'scrollup_show' => get_option($opt_name['scrollup_show']),
+		    'scrollup_position' => get_option($opt_name['scrollup_position']),
+		    'scrollup_distance' => get_option($opt_name['scrollup_distance']),
+		    'scrollup_animation' => get_option($opt_name['scrollup_animation'])
+		);
 
 		if (isset($_POST[$hidden_field_name]) && $_POST[$hidden_field_name] == 'Y') {
 			$opt_val = array(
-					'scrollup_text' => $_POST[$opt_name['scrollup_text']],
-					'scrollup_type' => $_POST[$opt_name['scrollup_type']],
-					'scrollup_show' => $_POST[$opt_name['scrollup_show']],
-					'scrollup_position' => $_POST[$opt_name['scrollup_position']]
-				    );
+			    'scrollup_text' => $_POST[$opt_name['scrollup_text']],
+			    'scrollup_type' => $_POST[$opt_name['scrollup_type']],
+			    'scrollup_show' => $_POST[$opt_name['scrollup_show']],
+			    'scrollup_position' => $_POST[$opt_name['scrollup_position']],
+			    'scrollup_distance' => $_POST[$opt_name['scrollup_distance']],
+			    'scrollup_animation' => $_POST[$opt_name['scrollup_animation']]
+			);
 			update_option($opt_name['scrollup_text'], $opt_val['scrollup_text']);
 			update_option($opt_name['scrollup_type'], $opt_val['scrollup_type']);
 			update_option($opt_name['scrollup_show'], $opt_val['scrollup_show']);
 			update_option($opt_name['scrollup_position'], $opt_val['scrollup_position']);
+			update_option($opt_name['scrollup_distance'], $opt_val['scrollup_distance']);
+			update_option($opt_name['scrollup_animation'], $opt_val['scrollup_animation']);
 			?>
 			<div id="message" class="updated fade">
 				<p><strong>
@@ -155,7 +183,7 @@ class ScrollUp {
 				<p><label for="">Scroll Up text:</label>
 					<input type="text" name="<?php echo $opt_name['scrollup_text']; ?>" id="<?php echo $opt_name['scrollup_text']; ?>" value="<?php echo $opt_val['scrollup_text']; ?>"/>
 				</p>
-				
+
 				<p><label for="">Scroll Up type</label>
 					<select name="<?php echo $opt_name['scrollup_type']; ?>">
 						<option value="link" <?php echo ($opt_val['scrollup_type'] == "link") ? 'selected="selected"' : ''; ?> ><?php _e('Text link', 'scroll-up-locale'); ?></option>
@@ -163,18 +191,30 @@ class ScrollUp {
 						<option value="tab" <?php echo ($opt_val['scrollup_type'] == "tab") ? 'selected="selected"' : ''; ?> ><?php _e('Tab', 'scroll-up-locale'); ?></option>
 					</select>
 				</p>
-				
+
 				<p><label for="">Scroll Up position</label>
 					<select name="<?php echo $opt_name['scrollup_position']; ?>">
 						<option value="left" <?php echo ($opt_val['scrollup_position'] == "left") ? 'selected="selected"' : ''; ?> ><?php _e('Left', 'scroll-up-locale'); ?></option>
 						<option value="right" <?php echo ($opt_val['scrollup_position'] == "right") ? 'selected="selected"' : ''; ?> ><?php _e('Right', 'scroll-up-locale'); ?></option>
 					</select>
 				</p>
-				
+
 				<p><label for="">Show in homepage</label>
 					<select name="<?php echo $opt_name['scrollup_show']; ?>">
 						<option value="0" <?php echo ($opt_val['scrollup_show'] == "0") ? 'selected="selected"' : ''; ?> ><?php _e('No', 'scroll-up-locale'); ?></option>
 						<option value="1" <?php echo ($opt_val['scrollup_show'] == "1") ? 'selected="selected"' : ''; ?> ><?php _e('Yes', 'scroll-up-locale'); ?></option>
+					</select>
+				</p>
+				
+				<p><label for="">Distance (in px) from top before showing scroll up element:</label>
+					<input type="text" name="<?php echo $opt_name['scrollup_distance']; ?>" id="<?php echo $opt_name['scrollup_distance']; ?>" value="<?php echo $opt_val['scrollup_distance']; ?>"/>
+				</p>
+				
+				<p><label for="">Scroll up elemenent show animation</label>
+					<select name="<?php echo $opt_name['scrollup_animation']; ?>">
+						<option value="fade" <?php echo ($opt_val['scrollup_animation'] == "fade") ? 'selected="selected"' : ''; ?> ><?php _e('Fade', 'scroll-up-locale'); ?></option>
+						<option value="slide" <?php echo ($opt_val['scrollup_animation'] == "slide") ? 'selected="selected"' : ''; ?> ><?php _e('Slide', 'scroll-up-locale'); ?></option>
+						<option value="none" <?php echo ($opt_val['scrollup_animation'] == "none") ? 'selected="selected"' : ''; ?> ><?php _e('None', 'scroll-up-locale'); ?></option>
 					</select>
 				</p>
 
@@ -191,16 +231,16 @@ class ScrollUp {
 		public function register_plugin_scripts() {
 
 			$scrollup_show = get_option('scrollup_show', '0');
-			
-			if(
-				$scrollup_show=="1"
+
+			if (
+				$scrollup_show == "1"
 				||
-				$scrollup_show=="0" && (!is_home() || !is_front_page())
-			){
-			
+				$scrollup_show == "0" && (!is_home() || !is_front_page())
+			) {
+
 				wp_enqueue_script('jquery');
 
-				wp_register_script('scrollup', plugins_url(PLUGIN_DIR_NAME . '/js/jquery.scrollUp.min.js'), '', '', true);
+				wp_register_script('scrollup', plugins_url(SMTH_SCRL_UP_PLUGIN_DIR_ . '/js/jquery.scrollUp.min.js'), '', '', true);
 				wp_enqueue_script('scrollup');
 			}
 		}
@@ -211,21 +251,25 @@ class ScrollUp {
 
 		public function register_plugin_styles() {
 
-			$scrollup_type = get_option('scrollup_type', 'tab');
+			$scrollup_show = get_option('scrollup_show', '0');
 
-			if ($scrollup_type == 'link') {
-				wp_register_style('link', plugins_url(PLUGIN_DIR_NAME . '/css/link.css'));
-				wp_enqueue_style('link');
-			}
+			if (
+				$scrollup_show == "1"
+				||
+				$scrollup_show == "0" && (!is_home() || !is_front_page())
+			) {
+				$scrollup_type = get_option('scrollup_type', 'tab');
 
-			else if ($scrollup_type == 'pill') {
-				wp_register_style('pill', plugins_url(PLUGIN_DIR_NAME . '/css/pill.css'));
-				wp_enqueue_style('pill');
-			}
-
-			else {
-				wp_register_style('tab', plugins_url(PLUGIN_DIR_NAME . '/css/tab.css'));
-				wp_enqueue_style('tab');
+				if ($scrollup_type == 'link') {
+					wp_register_style('link', plugins_url(SMTH_SCRL_UP_PLUGIN_DIR_ . '/css/link.css'));
+					wp_enqueue_style('link');
+				} else if ($scrollup_type == 'pill') {
+					wp_register_style('pill', plugins_url(SMTH_SCRL_UP_PLUGIN_DIR_ . '/css/pill.css'));
+					wp_enqueue_style('pill');
+				} else {
+					wp_register_style('tab', plugins_url(SMTH_SCRL_UP_PLUGIN_DIR_ . '/css/tab.css'));
+					wp_enqueue_style('tab');
+				}
 			}
 		}
 
