@@ -8,8 +8,8 @@
   Tags: page, scroll up, scroll, up, navigation, back to top, back, to, top, scroll to top
   Requires at least: 3.2
   Tested up to: 3.8
-  Stable tag: 0.5.4
-  Version: 0.5.4
+  Stable tag: 0.5.5
+  Version: 0.5.5
   License: GPLv2 or later
   Description: Scroll Up plugin lightweight plugin that creates a customizable "Scroll to top" feature in any post/page of your WordPress website.
 
@@ -81,10 +81,12 @@ class ScrollUp {
 			$scrollup_show == "0" && (!is_home() || !is_front_page())
 		) {
 			$scrollup_position = get_option('scrollup_position', 'left');
-			if ($scrollup_position == 'left')
-				echo '<style>#scrollUp {left: 20px;}</style>';
-			else
+			if ($scrollup_position == 'center')
+				echo '<style>#scrollUp {left: 47%;}</style>';
+			else if ($scrollup_position == 'right')
 				echo '<style>#scrollUp {right: 20px;}</style>';
+			else
+				echo '<style>#scrollUp {left: 20px;}</style>';			
 		}
 	}
 
@@ -196,6 +198,7 @@ class ScrollUp {
 					<select name="<?php echo $opt_name['scrollup_position']; ?>">
 						<option value="left" <?php echo ($opt_val['scrollup_position'] == "left") ? 'selected="selected"' : ''; ?> ><?php _e('Left', 'scroll-up-locale'); ?></option>
 						<option value="right" <?php echo ($opt_val['scrollup_position'] == "right") ? 'selected="selected"' : ''; ?> ><?php _e('Right', 'scroll-up-locale'); ?></option>
+						<option value="center" <?php echo ($opt_val['scrollup_position'] == "center") ? 'selected="selected"' : ''; ?> ><?php _e('Center', 'scroll-up-locale'); ?></option>
 					</select>
 				</p>
 
