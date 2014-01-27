@@ -8,8 +8,8 @@
   Tags: page, scroll up, scroll, up, navigation, back to top, back, to, top, scroll to top
   Requires at least: 3.2
   Tested up to: 3.8.1
-  Stable tag: 0.5.7
-  Version: 0.5.7
+  Stable tag: 0.6
+  Version: 0.6
   License: GPLv2 or later
   Description: Scroll Up plugin lightweight plugin that creates a customizable "Scroll to top" feature in any post/page of your WordPress website.
 
@@ -86,7 +86,7 @@ class ScrollUp {
 			else if ($scrollup_position == 'right')
 				echo '<style>#scrollUp {right: 20px;}</style>';
 			else
-				echo '<style>#scrollUp {left: 20px;}</style>';			
+				echo '<style>#scrollUp {left: 20px;}</style>';
 		}
 	}
 
@@ -98,22 +98,24 @@ class ScrollUp {
 			||
 			$scrollup_show == "0" && (!is_home() || !is_front_page())
 		) {
-			$scrollup_text = get_option('scrollup_text', 'Scroll to top');
-			
-			$scrollup_distance = get_option('scrollup_distance', '300');
+			$scrollup_text = str_replace("&#039;", "\'", html_entity_decode(get_option('scrollup_text', 'Scroll to top')));
+
+			$scrollup_distance = str_replace("&#039;", "\'", html_entity_decode(get_option('scrollup_distance', '')));
 			$scrollup_distance = ($scrollup_distance != '' ? $scrollup_distance : '300');
 
 			$scrollup_animation = get_option('scrollup_animation', 'fade');
-			
+
+			$scrollup_attr = str_replace("&#039;", "\'", html_entity_decode(get_option('scrollup_attr', '')));
+
 			echo '<script> var $nocnflct = jQuery.noConflict();
 			$nocnflct(function () {
 			    $nocnflct.scrollUp({
 				scrollName: \'scrollUp\', // Element ID
-				scrollDistance: '.$scrollup_distance.', // Distance from top/bottom before showing element (px)
+				scrollDistance: ' . $scrollup_distance . ', // Distance from top/bottom before showing element (px)
 				scrollFrom: \'top\', // top or bottom
 				scrollSpeed: 300, // Speed back to top (ms)
 				easingType: \'linear\', // Scroll to top easing (see http://easings.net/)
-				animation: \''.$scrollup_animation.'\', // Fade, slide, none
+				animation: \'' . $scrollup_animation . '\', // Fade, slide, none
 				animationInSpeed: 200, // Animation in speed (ms)
 				animationOutSpeed: 200, // Animation out speed (ms)
 				scrollText: \'' . $scrollup_text . '\', // Text for element, can contain HTML
@@ -122,8 +124,16 @@ class ScrollUp {
 				activeOverlay: false, // Set CSS color to display scrollUp active point
 				zIndex: 2147483647 // Z-Index for the overlay
 			    });
-			});
-			</script>';
+			});';
+
+			if ($scrollup_attr != '')
+				echo '
+				$nocnflct( document ).ready(function() {   
+					$nocnflct(\'#scrollUp\').attr(\'onclick\', \'' . $scrollup_attr . '\');
+				});
+				';
+
+			echo '</script>';
 		}
 	}
 
@@ -139,7 +149,8 @@ class ScrollUp {
 		    'scrollup_show' => 'scrollup_show',
 		    'scrollup_position' => 'scrollup_position',
 		    'scrollup_distance' => 'scrollup_distance',
-		    'scrollup_animation' => 'scrollup_animation'
+		    'scrollup_animation' => 'scrollup_animation',
+		    'scrollup_attr' => 'scrollup_attr',
 		);
 		$hidden_field_name = 'scrollup_submit_hidden';
 
@@ -149,17 +160,19 @@ class ScrollUp {
 		    'scrollup_show' => get_option($opt_name['scrollup_show']),
 		    'scrollup_position' => get_option($opt_name['scrollup_position']),
 		    'scrollup_distance' => get_option($opt_name['scrollup_distance']),
-		    'scrollup_animation' => get_option($opt_name['scrollup_animation'])
+		    'scrollup_animation' => get_option($opt_name['scrollup_animation']),
+		    'scrollup_attr' => get_option($opt_name['scrollup_attr'])
 		);
 
 		if (isset($_POST[$hidden_field_name]) && $_POST[$hidden_field_name] == 'Y') {
 			$opt_val = array(
-			    'scrollup_text' => $_POST[$opt_name['scrollup_text']],
+			    'scrollup_text' => stripslashes(esc_html(esc_attr(($_POST[$opt_name['scrollup_text']])))),
 			    'scrollup_type' => $_POST[$opt_name['scrollup_type']],
 			    'scrollup_show' => $_POST[$opt_name['scrollup_show']],
 			    'scrollup_position' => $_POST[$opt_name['scrollup_position']],
-			    'scrollup_distance' => $_POST[$opt_name['scrollup_distance']],
-			    'scrollup_animation' => $_POST[$opt_name['scrollup_animation']]
+			    'scrollup_distance' => stripslashes(esc_html(esc_attr(($_POST[$opt_name['scrollup_distance']])))),
+			    'scrollup_animation' => $_POST[$opt_name['scrollup_animation']],
+			    'scrollup_attr' => stripslashes(esc_html(esc_attr(($_POST[$opt_name['scrollup_attr']]))))
 			);
 			update_option($opt_name['scrollup_text'], $opt_val['scrollup_text']);
 			update_option($opt_name['scrollup_type'], $opt_val['scrollup_type']);
@@ -167,6 +180,7 @@ class ScrollUp {
 			update_option($opt_name['scrollup_position'], $opt_val['scrollup_position']);
 			update_option($opt_name['scrollup_distance'], $opt_val['scrollup_distance']);
 			update_option($opt_name['scrollup_animation'], $opt_val['scrollup_animation']);
+			update_option($opt_name['scrollup_attr'], $opt_val['scrollup_attr']);
 			?>
 			<div id="message" class="updated fade">
 				<p><strong>
@@ -178,15 +192,15 @@ class ScrollUp {
 		?>
 
 		<div class="wrap">
-			<h2><?php _e('Smooth Scroll Up', 'att_trans_domain'); ?></h2>
+			<h2><?php _e('Scroll Up Options', 'att_trans_domain'); ?></h2>
 			<form name="att_img_options" method="post" action="<?php echo str_replace('%7E', '~', $_SERVER['REQUEST_URI']); ?>">
 				<input type="hidden" name="<?php echo $hidden_field_name; ?>" value="Y">
 
-				<p><label for="">Scroll Up text:</label>
+				<p><label for="">Text:</label>
 					<input type="text" name="<?php echo $opt_name['scrollup_text']; ?>" id="<?php echo $opt_name['scrollup_text']; ?>" value="<?php echo $opt_val['scrollup_text']; ?>"/>
 				</p>
 
-				<p><label for="">Scroll Up type</label>
+				<p><label for="">Type</label>
 					<select name="<?php echo $opt_name['scrollup_type']; ?>">
 						<option value="link" <?php echo ($opt_val['scrollup_type'] == "link") ? 'selected="selected"' : ''; ?> ><?php _e('Text link', 'scroll-up-locale'); ?></option>
 						<option value="pill" <?php echo ($opt_val['scrollup_type'] == "pill") ? 'selected="selected"' : ''; ?> ><?php _e('Pill', 'scroll-up-locale'); ?></option>
@@ -194,7 +208,7 @@ class ScrollUp {
 					</select>
 				</p>
 
-				<p><label for="">Scroll Up position</label>
+				<p><label for="">Position</label>
 					<select name="<?php echo $opt_name['scrollup_position']; ?>">
 						<option value="left" <?php echo ($opt_val['scrollup_position'] == "left") ? 'selected="selected"' : ''; ?> ><?php _e('Left', 'scroll-up-locale'); ?></option>
 						<option value="right" <?php echo ($opt_val['scrollup_position'] == "right") ? 'selected="selected"' : ''; ?> ><?php _e('Right', 'scroll-up-locale'); ?></option>
@@ -208,17 +222,22 @@ class ScrollUp {
 						<option value="1" <?php echo ($opt_val['scrollup_show'] == "1") ? 'selected="selected"' : ''; ?> ><?php _e('Yes', 'scroll-up-locale'); ?></option>
 					</select>
 				</p>
-				
-				<p><label for="">Distance (in px) from top before showing scroll up element:</label>
-					<input type="text" name="<?php echo $opt_name['scrollup_distance']; ?>" id="<?php echo $opt_name['scrollup_distance']; ?>" value="<?php echo $opt_val['scrollup_distance']; ?>"/>
+
+				<p><label for="">Distance from top before showing scroll up element:</label>
+					<input type="text" name="<?php echo $opt_name['scrollup_distance']; ?>" id="<?php echo $opt_name['scrollup_distance']; ?>" value="<?php echo $opt_val['scrollup_distance']; ?>"/>px
 				</p>
-				
-				<p><label for="">Scroll up elemenent show animation</label>
+
+				<p><label for="">Show animation</label>
 					<select name="<?php echo $opt_name['scrollup_animation']; ?>">
 						<option value="fade" <?php echo ($opt_val['scrollup_animation'] == "fade") ? 'selected="selected"' : ''; ?> ><?php _e('Fade', 'scroll-up-locale'); ?></option>
 						<option value="slide" <?php echo ($opt_val['scrollup_animation'] == "slide") ? 'selected="selected"' : ''; ?> ><?php _e('Slide', 'scroll-up-locale'); ?></option>
 						<option value="none" <?php echo ($opt_val['scrollup_animation'] == "none") ? 'selected="selected"' : ''; ?> ><?php _e('None', 'scroll-up-locale'); ?></option>
 					</select>
+				</p>
+
+				<p><label for="">Onclick event:</label>
+					<input type="text" name="<?php echo $opt_name['scrollup_attr']; ?>" id="<?php echo $opt_name['scrollup_attr']; ?>" value="<?php echo $opt_val['scrollup_attr']; ?>"/>
+					<span style="font-size:11px;font-style:italic;">example: type <code>exit()</code> in order to add an event <code>onclick="exit()"</code></span>
 				</p>
 
 				<p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="<?php _e('Save Changes', 'scroll-up-locale'); ?>"></p>
