@@ -297,4 +297,4 @@ class ScrollUp {
 
 	}
 
-	new ScrollUp();
+new ScrollUp();
