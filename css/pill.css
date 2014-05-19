@@ -1,5 +1,6 @@
 /* Pill style */
 #scrollUp {
+	zIndex: 9999999;
 	bottom: 20px;
 	background: #555;
 	color: #fff;
@@ -8,13 +9,13 @@
 	text-decoration: none;
 	opacity: .9;
 	padding: 10px 20px;
-	-webkit-border-radius: 16px;
-	-moz-border-radius: 16px;
-	border-radius: 16px;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
 	-webkit-transition: background 200ms linear;
 	-moz-transition: background 200ms linear;
 	transition: background 200ms linear;
 }
-	#scrollUp:hover {
-		background: #000;
-	}
+#scrollUp:hover {
+	background: #000;
+}

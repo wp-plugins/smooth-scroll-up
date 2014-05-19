@@ -1,5 +1,6 @@
 /* Tab style */
 #scrollUp {
+	zIndex: 9999999;
 	bottom: -10px;
 	width: 70px;
 	height: 70px;
