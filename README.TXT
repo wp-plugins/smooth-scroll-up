@@ -7,8 +7,8 @@ Contributors: kouratoras
 Tags: page, scroll up, scroll, up, navigation, back to top, back, to, top, scroll to top
 Requires at least: 3.2
 Tested up to: 3.9
-Stable tag: 0.7
-Version: 0.7
+Stable tag: 0.7.1
+Version: 0.7.1
 License: GPLv2 or later
 
 Scroll Up plugin lightweight plugin that creates a customizable "Scroll to top" feature in any post/page of your WordPress website.
@@ -16,6 +16,17 @@ Scroll Up plugin lightweight plugin that creates a customizable "Scroll to top" 
 == Description ==
 
 Scroll Up plugin lightweight plugin that creates a customizable "Scroll to top" feature in any post/page of your WordPress website.
+
+= Features =
+* Choose from different scroll up element types (text link, pill, tab)
+* Choose scroll up element position (left, center, right)
+* Custom text in scroll up element
+* Option to add an on-click event
+* Set distance from top before showing scroll up element
+* Scroll up element animations (fade, slide, none)
+* Enable/disable in mobile devices
+* Enable/disable in home page
+
 
 == Installation ==
 
@@ -38,6 +49,9 @@ Go to "Settings -> "Scroll Up Option" and choose the option you want.
 2. Scroll Up in action
 
 == Changelog ==
+
+= 0.7.1 =
+* Mobile detection bug fix
 
 = 0.7 =
 * CSS fixes
