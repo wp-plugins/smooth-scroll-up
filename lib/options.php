@@ -92,7 +92,7 @@ class ScrollUpOptions {
 					</select>
 				</p>
 
-				<p><label for=""><?php _e('Show in mobile devices', 'att_trans_domain'); ?>:</label>;
+				<p><label for=""><?php _e('Show in mobile devices', 'att_trans_domain'); ?>:</label>
 					<select name="<?php echo $opt_name['scrollup_mobile']; ?>">
 						<option value="0" <?php echo ($opt_val['scrollup_mobile'] == "0") ? 'selected="selected"' : ''; ?> ><?php _e('No', 'scroll-up-locale'); ?></option>
 						<option value="1" <?php echo ($opt_val['scrollup_mobile'] == "1") ? 'selected="selected"' : ''; ?> ><?php _e('Yes', 'scroll-up-locale'); ?></option>

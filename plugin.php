@@ -8,9 +8,9 @@
   Contributors: kouratoras
   Tags: page, scroll up, scroll, up, navigation, back to top, back, to, top, scroll to top
   Requires at least: 3.2
-  Tested up to: 3.9
-  Stable tag: 0.7.1
-  Version: 0.7.1
+  Tested up to: 3.9.1
+  Stable tag: 0.7.2
+  Version: 0.7.2
   License: GPLv2 or later
   Description: Scroll Up plugin lightweight plugin that creates a customizable "Scroll to top" feature in any post/page of your WordPress website.
 
@@ -47,7 +47,9 @@ class ScrollUp {
 		load_plugin_textdomain('scroll-up-locale', false, plugin_dir_path(__FILE__) . '/lang/');
 
 		//Mobile detection library
-		require_once( plugin_dir_path(__FILE__) . '/lib/Mobile_Detect.php' );
+		if(!class_exists('Mobile_Detect')){
+			require_once( plugin_dir_path(__FILE__) . '/lib/Mobile_Detect.php' );
+		}		
 		$this->detector = new Mobile_Detect;
 
 		//Options Page
