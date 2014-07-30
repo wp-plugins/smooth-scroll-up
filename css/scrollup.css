@@ -1,5 +1,5 @@
 /* Tab style */
-#scrollUp {
+.scrollup-tab {
 	zIndex: 9999999;
 	bottom: -10px;
 	width: 70px;
@@ -26,6 +26,45 @@
 	-moz-transition: bottom 150ms linear;
 	transition: bottom 150ms linear;
 }
-	#scrollUp:hover {
-		bottom: 0px;
-	}
+
+.scrollup-tab:hover {
+	bottom: 0px;
+}
+
+/* Pill style */
+.scrollup-pill {
+	zIndex: 9999999;
+	bottom: 20px;
+	background: #555;
+	color: #fff;
+	font-size: 12px;
+	font-family: sans-serif;
+	text-decoration: none;
+	opacity: .9;
+	padding: 10px 20px;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	-webkit-transition: background 200ms linear;
+	-moz-transition: background 200ms linear;
+	transition: background 200ms linear;
+}
+
+.scrollup-pill:hover {
+	background: #000;
+}
+
+/* Text link style */
+.scrollup-link {
+	bottom: 20px;
+	zIndex: 9999999;
+}
+
+/* Center style */
+.scrollup-center {left: 47%;}
+
+/* Right style */
+.scrollup-right {right: 20px;}
+
+/* Left style */
+.scrollup-left {left: 20px;}

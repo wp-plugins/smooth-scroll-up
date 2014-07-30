@@ -3,7 +3,7 @@
 class ScrollUpOptions {
 
 	public function plugin_add_options() {
-		add_options_page('Scroll Up Options', 'Scroll Up Options', 'manage_options', 'scrollupoptions', array(&$this, 'plugin_options_page'));
+		add_options_page(__('Scroll Up Options', 'scrollup'), __('Scroll Up Options', 'scrollup'), 'manage_options', 'scrollupoptions', array(&$this, 'plugin_options_page'));
 	}
 
 	function plugin_options_page() {
@@ -53,7 +53,7 @@ class ScrollUpOptions {
 			?>
 			<div id="message" class="updated fade">
 				<p><strong>
-						<?php _e('Options saved.', 'scroll-up-locale'); ?>
+						<?php _e('Options saved.', 'scrollup'); ?>
 					</strong></p>
 			</div>
 			<?php
@@ -61,62 +61,67 @@ class ScrollUpOptions {
 		?>
 
 		<div class="wrap">
-			<h2><?php _e('Scroll Up Options', 'att_trans_domain'); ?></h2>
+			<h2><?php _e('Scroll Up Options', 'scrollup'); ?></h2>
 			<form name="att_img_options" method="post" action="<?php echo str_replace('%7E', '~', $_SERVER['REQUEST_URI']); ?>">
 				<input type="hidden" name="<?php echo $hidden_field_name; ?>" value="Y">
 
-				<p><label for=""><?php _e('Text', 'att_trans_domain'); ?>:</label>
+				<p><label for=""><?php _e('Text', 'scrollup'); ?>:</label>
 					<input type="text" name="<?php echo $opt_name['scrollup_text']; ?>" id="<?php echo $opt_name['scrollup_text']; ?>" value="<?php echo $opt_val['scrollup_text']; ?>"/>
 				</p>
 
-				<p><label for=""><?php _e('Type', 'att_trans_domain'); ?>:</label>
+				<p><label for=""><?php _e('Type', 'scrollup'); ?>:</label>
 					<select name="<?php echo $opt_name['scrollup_type']; ?>">
-						<option value="link" <?php echo ($opt_val['scrollup_type'] == "link") ? 'selected="selected"' : ''; ?> ><?php _e('Text link', 'scroll-up-locale'); ?></option>
-						<option value="pill" <?php echo ($opt_val['scrollup_type'] == "pill") ? 'selected="selected"' : ''; ?> ><?php _e('Pill', 'scroll-up-locale'); ?></option>
-						<option value="tab" <?php echo ($opt_val['scrollup_type'] == "tab") ? 'selected="selected"' : ''; ?> ><?php _e('Tab', 'scroll-up-locale'); ?></option>
+						<option value="link" <?php echo ($opt_val['scrollup_type'] == "link") ? 'selected="selected"' : ''; ?> ><?php _e('Text link', 'scrollup'); ?></option>
+						<option value="pill" <?php echo ($opt_val['scrollup_type'] == "pill") ? 'selected="selected"' : ''; ?> ><?php _e('Pill', 'scrollup'); ?></option>
+						<option value="tab" <?php echo ($opt_val['scrollup_type'] == "tab") ? 'selected="selected"' : ''; ?> ><?php _e('Tab', 'scrollup'); ?></option>
 					</select>
 				</p>
 
-				<p><label for=""><?php _e('Position', 'att_trans_domain'); ?>:</label>
+				<p><label for=""><?php _e('Position', 'scrollup'); ?>:</label>
 					<select name="<?php echo $opt_name['scrollup_position']; ?>">
-						<option value="left" <?php echo ($opt_val['scrollup_position'] == "left") ? 'selected="selected"' : ''; ?> ><?php _e('Left', 'scroll-up-locale'); ?></option>
-						<option value="right" <?php echo ($opt_val['scrollup_position'] == "right") ? 'selected="selected"' : ''; ?> ><?php _e('Right', 'scroll-up-locale'); ?></option>
-						<option value="center" <?php echo ($opt_val['scrollup_position'] == "center") ? 'selected="selected"' : ''; ?> ><?php _e('Center', 'scroll-up-locale'); ?></option>
+						<option value="left" <?php echo ($opt_val['scrollup_position'] == "left") ? 'selected="selected"' : ''; ?> ><?php _e('Left', 'scrollup'); ?></option>
+						<option value="right" <?php echo ($opt_val['scrollup_position'] == "right") ? 'selected="selected"' : ''; ?> ><?php _e('Right', 'scrollup'); ?></option>
+						<option value="center" <?php echo ($opt_val['scrollup_position'] == "center") ? 'selected="selected"' : ''; ?> ><?php _e('Center', 'scrollup'); ?></option>
 					</select>
 				</p>
 
-				<p><label for=""><?php _e('Show in homepage', 'att_trans_domain'); ?>:</label>
+				<p><label for=""><?php _e('Show in homepage', 'scrollup'); ?>:</label>
 					<select name="<?php echo $opt_name['scrollup_show']; ?>">
-						<option value="0" <?php echo ($opt_val['scrollup_show'] == "0") ? 'selected="selected"' : ''; ?> ><?php _e('No', 'scroll-up-locale'); ?></option>
-						<option value="1" <?php echo ($opt_val['scrollup_show'] == "1") ? 'selected="selected"' : ''; ?> ><?php _e('Yes', 'scroll-up-locale'); ?></option>
+						<option value="0" <?php echo ($opt_val['scrollup_show'] == "0") ? 'selected="selected"' : ''; ?> ><?php _e('No', 'scrollup'); ?></option>
+						<option value="1" <?php echo ($opt_val['scrollup_show'] == "1") ? 'selected="selected"' : ''; ?> ><?php _e('Yes', 'scrollup'); ?></option>
 					</select>
 				</p>
 
-				<p><label for=""><?php _e('Show in mobile devices', 'att_trans_domain'); ?>:</label>
+				<p><label for=""><?php _e('Show in mobile devices', 'scrollup'); ?>:</label>
 					<select name="<?php echo $opt_name['scrollup_mobile']; ?>">
-						<option value="0" <?php echo ($opt_val['scrollup_mobile'] == "0") ? 'selected="selected"' : ''; ?> ><?php _e('No', 'scroll-up-locale'); ?></option>
-						<option value="1" <?php echo ($opt_val['scrollup_mobile'] == "1") ? 'selected="selected"' : ''; ?> ><?php _e('Yes', 'scroll-up-locale'); ?></option>
+						<option value="0" <?php echo ($opt_val['scrollup_mobile'] == "0") ? 'selected="selected"' : ''; ?> ><?php _e('No', 'scrollup'); ?></option>
+						<option value="1" <?php echo ($opt_val['scrollup_mobile'] == "1") ? 'selected="selected"' : ''; ?> ><?php _e('Yes', 'scrollup'); ?></option>
 					</select>
 				</p>
 
-				<p><label for=""><?php _e('Distance from top before showing scroll up element', 'att_trans_domain'); ?>:</label>
+				<p><label for=""><?php _e('Distance from top before showing scroll up element', 'scrollup'); ?>:</label>
 					<input type="text" name="<?php echo $opt_name['scrollup_distance']; ?>" id="<?php echo $opt_name['scrollup_distance']; ?>" value="<?php echo $opt_val['scrollup_distance']; ?>"/>px
 				</p>
 
-				<p><label for=""><?php _e('Show animation', 'att_trans_domain'); ?>:</label>
+				<p><label for=""><?php _e('Show animation', 'scrollup'); ?>:</label>
 					<select name="<?php echo $opt_name['scrollup_animation']; ?>">
-						<option value="fade" <?php echo ($opt_val['scrollup_animation'] == "fade") ? 'selected="selected"' : ''; ?> ><?php _e('Fade', 'scroll-up-locale'); ?></option>
-						<option value="slide" <?php echo ($opt_val['scrollup_animation'] == "slide") ? 'selected="selected"' : ''; ?> ><?php _e('Slide', 'scroll-up-locale'); ?></option>
-						<option value="none" <?php echo ($opt_val['scrollup_animation'] == "none") ? 'selected="selected"' : ''; ?> ><?php _e('None', 'scroll-up-locale'); ?></option>
+						<option value="fade" <?php echo ($opt_val['scrollup_animation'] == "fade") ? 'selected="selected"' : ''; ?> ><?php _e('Fade', 'scrollup'); ?></option>
+						<option value="slide" <?php echo ($opt_val['scrollup_animation'] == "slide") ? 'selected="selected"' : ''; ?> ><?php _e('Slide', 'scrollup'); ?></option>
+						<option value="none" <?php echo ($opt_val['scrollup_animation'] == "none") ? 'selected="selected"' : ''; ?> ><?php _e('None', 'scrollup'); ?></option>
 					</select>
 				</p>
 
-				<p><label for=""><?php _e('Onclick event', 'att_trans_domain'); ?>:</label>
+				<p><label for=""><?php _e('Onclick event', 'scrollup'); ?>:</label>
 					<input type="text" name="<?php echo $opt_name['scrollup_attr']; ?>" id="<?php echo $opt_name['scrollup_attr']; ?>" value="<?php echo $opt_val['scrollup_attr']; ?>"/>
-					<span style="font-size:11px;font-style:italic;">example: type <code>exit()</code> in order to add an event <code>onclick="exit()"</code></span>
+					<span style="font-size:11px;font-style:italic;">
+						<?php
+							$message = sprintf( __('example: type %s in order to add an event %s' , 'scrollup') , '<code>exit()</code>', '<code>exit()</code>' );
+							echo $message;
+						?>
+					</span>
 				</p>
 
-				<p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="<?php _e('Save Changes', 'scroll-up-locale'); ?>"></p>
+				<p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="<?php _e('Save Changes', 'scrollup'); ?>"></p>
 			</form>
 
 			<?php

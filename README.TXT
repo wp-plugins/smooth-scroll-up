@@ -7,8 +7,8 @@ Contributors: kouratoras
 Tags: page, scroll up, scroll, up, navigation, back to top, back, to, top, scroll to top
 Requires at least: 3.2
 Tested up to: 3.9.1
-Stable tag: 0.7.2
-Version: 0.7.2
+Stable tag: 0.8
+Version: 0.8
 License: GPLv2 or later
 
 Scroll Up plugin lightweight plugin that creates a customizable "Scroll to top" feature in any post/page of your WordPress website.
@@ -27,6 +27,12 @@ Scroll Up plugin lightweight plugin that creates a customizable "Scroll to top" 
 * Enable/disable in mobile devices
 * Enable/disable in home page
 
+= Translations included =
+* English
+* Greek
+
+New translations are very welcome - please submit them via [WP-Translations](http://wp-translations.org/ "WP-Translations").
+This plugin's WP-Translations page is [https://www.transifex.com/projects/p/smooth-scroll-up/](https://www.transifex.com/projects/p/smooth-scroll-up/ "WP-Translations").
 
 == Installation ==
 
@@ -49,6 +55,12 @@ Go to "Settings -> "Scroll Up Option" and choose the option you want.
 2. Scroll Up in action
 
 == Changelog ==
+
+= 0.8 =
+* Code reorganization
+* Reduced CSS files
+* Added translations
+* Script update
 
 = 0.7.2 =
 * Fixed minor bug
