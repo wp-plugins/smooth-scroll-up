@@ -71,6 +71,7 @@ class ScrollUpOptions {
 
 				<p><label for=""><?php _e('Type', 'scrollup'); ?>:</label>
 					<select name="<?php echo $opt_name['scrollup_type']; ?>">
+						<option value="image" <?php echo ($opt_val['scrollup_type'] == "image") ? 'selected="selected"' : ''; ?> ><?php _e('Image', 'scrollup'); ?></option>
 						<option value="link" <?php echo ($opt_val['scrollup_type'] == "link") ? 'selected="selected"' : ''; ?> ><?php _e('Text link', 'scrollup'); ?></option>
 						<option value="pill" <?php echo ($opt_val['scrollup_type'] == "pill") ? 'selected="selected"' : ''; ?> ><?php _e('Pill', 'scrollup'); ?></option>
 						<option value="tab" <?php echo ($opt_val['scrollup_type'] == "tab") ? 'selected="selected"' : ''; ?> ><?php _e('Tab', 'scrollup'); ?></option>

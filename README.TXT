@@ -7,15 +7,15 @@ Contributors: kouratoras
 Tags: page, scroll up, scroll, up, navigation, back to top, back, to, top, scroll to top
 Requires at least: 3.2
 Tested up to: 3.9.1
-Stable tag: 0.8
-Version: 0.8
+Stable tag: 0.8.1
+Version: 0.8.1
 License: GPLv2 or later
 
-Scroll Up plugin lightweight plugin that creates a customizable "Scroll to top" feature in any post/page of your WordPress website.
+Smooth Scroll Up plugin lightweight plugin that creates a customizable "Scroll to top" feature in any post/page of your WordPress website.
 
 == Description ==
 
-Scroll Up plugin lightweight plugin that creates a customizable "Scroll to top" feature in any post/page of your WordPress website.
+Smooth Scroll Up plugin lightweight plugin that creates a customizable "Scroll to top" feature in any post/page of your WordPress website.
 
 = Features =
 * Choose from different scroll up element types (text link, pill, tab)
@@ -28,8 +28,10 @@ Scroll Up plugin lightweight plugin that creates a customizable "Scroll to top" 
 * Enable/disable in home page
 
 = Translations included =
-* English
-* Greek
+*العربية (Arabic)
+* Français (French (France))
+* Ελληνικά (Greek)
+* Română (Romanian)
 
 New translations are very welcome - please submit them via [WP-Translations](http://wp-translations.org/ "WP-Translations").
 This plugin's WP-Translations page is [https://www.transifex.com/projects/p/smooth-scroll-up/](https://www.transifex.com/projects/p/smooth-scroll-up/ "WP-Translations").
@@ -56,10 +58,16 @@ Go to "Settings -> "Scroll Up Option" and choose the option you want.
 
 == Changelog ==
 
+= 0.8.1 =
+* Added image support after high demand (to do: be able to upload custom image via uploader)
+* Added French, Romanian, Arabic translation
+* Some CSS tweaks
+* Minor fixes
+
 = 0.8 =
 * Code reorganization
 * Reduced CSS files
-* Added translations
+* Added Greek translation
 * Script update
 
 = 0.7.2 =

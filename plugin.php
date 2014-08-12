@@ -9,10 +9,10 @@
   Tags: page, scroll up, scroll, up, navigation, back to top, back, to, top, scroll to top
   Requires at least: 3.2
   Tested up to: 3.9.1
-  Stable tag: 0.8
-  Version: 0.8
+  Stable tag: 0.8.1
+  Version: 0.8.1
   License: GPLv2 or later
-  Description: Scroll Up plugin lightweight plugin that creates a customizable "Scroll to top" feature in any post/page of your WordPress website.
+  Description: Smooth Scroll Up plugin lightweight plugin that creates a customizable "Scroll to top" feature in any post/page of your WordPress website.
 
   Copyright 2012 Konstantinos Kouratoras (kouratoras@gmail.com)
 
@@ -30,7 +30,8 @@
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-define('SMTH_SCRL_UP_PLUGIN_DIR', 'smooth-scroll-up');
+define( 'SMTH_SCRL_UP_PLUGIN_DIR', 'smooth-scroll-up' );
+define( 'SMTH_SCRL_UP_PLUGIN_NAME', 'Smooth Scroll Up' );
 
 class ScrollUp {
 
@@ -42,7 +43,7 @@ class ScrollUp {
 	  /*-------------------------------------------------- */
 
 	public function __construct() {
-
+		
 		//Load localisation files
 		add_action( 'init', array(&$this, 'plugin_textdomain'));
 
@@ -78,10 +79,6 @@ class ScrollUp {
 			false,
 			dirname( plugin_basename( __FILE__ ) ) . '/languages'
 			);
-		
-		//load_plugin_textdomain('scrollup', false, plugin_dir_path(__FILE__) . '/languages/');		
-		//load_plugin_textdomain('scrollup', false, basename( dirname( __FILE__ ) ) . '/languages/' );
-
 	}
 
 	public function plugin_action_links($links, $file) {
@@ -116,9 +113,15 @@ class ScrollUp {
 			$scrollup_type_class = 'scrollup-tab';
 			if ($scrollup_type == 'link') {
 				$scrollup_type_class = 'scrollup-link';
-			} else if ($scrollup_type == 'pill') {
+			}
+			else if ($scrollup_type == 'pill') {
 				$scrollup_type_class = 'scrollup-pill';
-			} else {
+			}
+			else if ($scrollup_type == 'image') {
+				$scrollup_type_class = 'scrollup-image';
+				$scrollup_text = "";
+			}
+			else {
 				$scrollup_type_class = 'scrollup-tab';
 			}
 
@@ -126,9 +129,11 @@ class ScrollUp {
 			$scrollup_position_class = 'scrollup-left';
 			if ($scrollup_position == 'center') {
 				$scrollup_position_class = 'scrollup-center';
-			} else if ($scrollup_position == 'right') {
+			}
+			else if ($scrollup_position == 'right') {
 				$scrollup_position_class = 'scrollup-right';
-			} else {
+			}
+			else {
 				$scrollup_position_class = 'scrollup-left';
 			}
 
