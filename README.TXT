@@ -11,11 +11,11 @@ Stable tag: 0.8.1
 Version: 0.8.1
 License: GPLv2 or later
 
-Smooth Scroll Up plugin lightweight plugin that creates a customizable "Scroll to top" feature in any post/page of your WordPress website.
+Smooth Scroll Up is a lightweight plugin that creates a customizable "Scroll to top" feature in any post/page of your WordPress website.
 
 == Description ==
 
-Smooth Scroll Up plugin lightweight plugin that creates a customizable "Scroll to top" feature in any post/page of your WordPress website.
+Smooth Scroll Up is a lightweight plugin that creates a customizable "Scroll to top" feature in any post/page of your WordPress website.
 
 = Features =
 * Choose from different scroll up element types (text link, pill, tab)
