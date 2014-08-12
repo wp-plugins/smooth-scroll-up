@@ -28,10 +28,10 @@ Smooth Scroll Up plugin lightweight plugin that creates a customizable "Scroll t
 * Enable/disable in home page
 
 = Translations included =
-*العربية (Arabic)
-* Français (French (France))
-* Ελληνικά (Greek)
-* Română (Romanian)
+* Arabic
+* French
+* Greek
+* Romanian
 
 New translations are very welcome - please submit them via [WP-Translations](http://wp-translations.org/ "WP-Translations").
 This plugin's WP-Translations page is [https://www.transifex.com/projects/p/smooth-scroll-up/](https://www.transifex.com/projects/p/smooth-scroll-up/ "WP-Translations").
