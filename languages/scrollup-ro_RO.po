@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Smooth Scroll Up\n"
-"POT-Creation-Date: 2014-07-30 12:50+0200\n"
-"PO-Revision-Date: 2014-07-31 11:45+0200\n"
+"POT-Creation-Date: 2014-08-13 12:59+0200\n"
+"PO-Revision-Date: 2014-08-13 13:14+0200\n"
 "Last-Translator: Konstantinos Kouratoras <kouratoras@gmail.com>\n"
 "Language-Team: Romanian (Romania) (http://www.transifex.com/projects/p/"
 "smooth-scroll-up/language/ro_RO/)\n"
@@ -40,83 +40,87 @@ msgid "Type"
 msgstr "Tip"
 
 #: lib/options.php:74
+msgid "Image"
+msgstr "Imagine"
+
+#: lib/options.php:75
 msgid "Text link"
 msgstr "Legătură text"
 
-#: lib/options.php:75
+#: lib/options.php:76
 msgid "Pill"
 msgstr "Bulină"
 
-#: lib/options.php:76
+#: lib/options.php:77
 msgid "Tab"
 msgstr "Filă"
 
-#: lib/options.php:80
+#: lib/options.php:81
 msgid "Position"
 msgstr "Aliniere"
 
-#: lib/options.php:82
+#: lib/options.php:83
 msgid "Left"
 msgstr "Stânga"
 
-#: lib/options.php:83
+#: lib/options.php:84
 msgid "Right"
 msgstr "Dreapta"
 
-#: lib/options.php:84
+#: lib/options.php:85
 msgid "Center"
 msgstr "Centru"
 
-#: lib/options.php:88
+#: lib/options.php:89
 msgid "Show in homepage"
 msgstr "Afişează pe pagina principală"
 
-#: lib/options.php:90 lib/options.php:97
+#: lib/options.php:91 lib/options.php:98
 msgid "No"
 msgstr "Nu"
 
-#: lib/options.php:91 lib/options.php:98
+#: lib/options.php:92 lib/options.php:99
 msgid "Yes"
 msgstr "Da"
 
-#: lib/options.php:95
+#: lib/options.php:96
 msgid "Show in mobile devices"
 msgstr "Afişează în echipamentele mobile"
 
-#: lib/options.php:102
+#: lib/options.php:103
 msgid "Distance from top before showing scroll up element"
 msgstr ""
 "Distanța de parcurs de sus până la afișarea elementului de scroll în sus"
 
-#: lib/options.php:106
+#: lib/options.php:107
 msgid "Show animation"
 msgstr "Arată animaţia"
 
-#: lib/options.php:108
+#: lib/options.php:109
 msgid "Fade"
 msgstr "Opacitate"
 
-#: lib/options.php:109
+#: lib/options.php:110
 msgid "Slide"
 msgstr "Alunecare"
 
-#: lib/options.php:110
+#: lib/options.php:111
 msgid "None"
 msgstr "Nespecificat"
 
-#: lib/options.php:114
+#: lib/options.php:115
 msgid "Onclick event"
 msgstr "Eveniment la click"
 
-#: lib/options.php:118
+#: lib/options.php:119
 #, php-format
 msgid "example: type %s in order to add an event %s"
 msgstr "exemplu: tastaţi %s pentru a adăuga un eveniment %s"
 
-#: lib/options.php:124
+#: lib/options.php:125
 msgid "Save Changes"
 msgstr "Salvează modificări"
 
-#: plugin.php:95
+#: plugin.php:93
 msgid "Settings"
 msgstr "Setări"

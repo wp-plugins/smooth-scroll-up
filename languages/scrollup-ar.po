@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Smooth Scroll Up\n"
-"POT-Creation-Date: 2014-07-30 12:50+0200\n"
-"PO-Revision-Date: 2014-07-31 11:45+0200\n"
+"POT-Creation-Date: 2014-08-13 12:59+0200\n"
+"PO-Revision-Date: 2014-08-13 13:14+0200\n"
 "Last-Translator: Konstantinos Kouratoras <kouratoras@gmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/projects/p/smooth-scroll-up/"
 "language/ar/)\n"
@@ -41,82 +41,86 @@ msgid "Type"
 msgstr "نوع"
 
 #: lib/options.php:74
+msgid "Image"
+msgstr "صورة"
+
+#: lib/options.php:75
 msgid "Text link"
 msgstr "رابط نصي"
 
-#: lib/options.php:75
+#: lib/options.php:76
 msgid "Pill"
 msgstr "كبسولة"
 
-#: lib/options.php:76
+#: lib/options.php:77
 msgid "Tab"
 msgstr "تبويب"
 
-#: lib/options.php:80
+#: lib/options.php:81
 msgid "Position"
 msgstr "موضع"
 
-#: lib/options.php:82
+#: lib/options.php:83
 msgid "Left"
 msgstr "يسار"
 
-#: lib/options.php:83
+#: lib/options.php:84
 msgid "Right"
 msgstr "يمين"
 
-#: lib/options.php:84
+#: lib/options.php:85
 msgid "Center"
 msgstr "وسط"
 
-#: lib/options.php:88
+#: lib/options.php:89
 msgid "Show in homepage"
 msgstr "أظهر في الصفحة الرئيسية"
 
-#: lib/options.php:90 lib/options.php:97
+#: lib/options.php:91 lib/options.php:98
 msgid "No"
 msgstr "لا"
 
-#: lib/options.php:91 lib/options.php:98
+#: lib/options.php:92 lib/options.php:99
 msgid "Yes"
 msgstr "نعم"
 
-#: lib/options.php:95
+#: lib/options.php:96
 msgid "Show in mobile devices"
 msgstr "أظهر في الأجهزة المحمولة"
 
-#: lib/options.php:102
+#: lib/options.php:103
 msgid "Distance from top before showing scroll up element"
 msgstr "المسافة من الأعلى قبل إظهار عنصر السكرول أب"
 
-#: lib/options.php:106
+#: lib/options.php:107
 msgid "Show animation"
 msgstr "إظهار الحركة"
 
-#: lib/options.php:108
+#: lib/options.php:109
 msgid "Fade"
 msgstr "تلاشي"
 
-#: lib/options.php:109
+#: lib/options.php:110
 msgid "Slide"
 msgstr "انزلاق"
 
-#: lib/options.php:110
+#: lib/options.php:111
 msgid "None"
 msgstr "لا شيء"
 
-#: lib/options.php:114
+#: lib/options.php:115
 msgid "Onclick event"
 msgstr "الحدث عند-النقر"
 
-#: lib/options.php:118
+#: lib/options.php:119
 #, php-format
 msgid "example: type %s in order to add an event %s"
 msgstr "مثال: أدخل %s لإضافة حدث %s"
 
-#: lib/options.php:124
+#: lib/options.php:125
 msgid "Save Changes"
 msgstr "حفظ التغييرات"
 
-#: plugin.php:95
+#: plugin.php:93
 msgid "Settings"
 msgstr "الإعدادات"
