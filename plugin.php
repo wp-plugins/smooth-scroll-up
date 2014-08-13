@@ -45,7 +45,7 @@ class ScrollUp {
 	public function __construct() {
 		
 		//Load localisation files
-		add_action( 'init', array(&$this, 'plugin_textdomain'));
+		load_plugin_textdomain('scrollup',false,dirname( plugin_basename( __FILE__ ) ) . '/languages');
 
 		//Mobile detection library
 		if(!class_exists('Mobile_Detect')){
@@ -70,15 +70,6 @@ class ScrollUp {
 			//Start up script
 			add_action('wp_footer', array(&$this, 'plugin_js'));
 		}
-	}
-	
-	function plugin_textdomain() {
-
-		load_plugin_textdomain(
-			'scrollup',
-			false,
-			dirname( plugin_basename( __FILE__ ) ) . '/languages'
-			);
 	}
 
 	public function plugin_action_links($links, $file) {
