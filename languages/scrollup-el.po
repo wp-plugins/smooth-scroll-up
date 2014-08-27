@@ -4,15 +4,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Smooth Scroll Up\n"
-"POT-Creation-Date: 2014-08-12 17:12+0200\n"
-"PO-Revision-Date: 2014-08-12 17:12+0200\n"
+"POT-Creation-Date: 2014-08-13 12:59+0200\n"
+"PO-Revision-Date: 2014-08-25 17:35+0200\n"
 "Last-Translator: Konstantinos Kouratoras <kouratoras@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/projects/p/smooth-scroll-up/"
 "language/el/)\n"
-"Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.6.7\n"
 "X-Poedit-Basepath: ..\n"
@@ -119,6 +119,6 @@ msgstr "παράδειγμα: πληκτρολογήστε %s για να προ
 msgid "Save Changes"
 msgstr "Αποθήκευση αλλαγών"
 
-#: plugin.php:92
+#: plugin.php:93
 msgid "Settings"
 msgstr "Ρυθμίσεις"

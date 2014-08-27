@@ -6,9 +6,9 @@ Author: Konstantinos Kouratoras
 Contributors: kouratoras
 Tags: page, scroll up, scroll, up, navigation, back to top, back, to, top, scroll to top
 Requires at least: 3.2
-Tested up to: 3.9.1
-Stable tag: 0.8.1
-Version: 0.8.1
+Tested up to: 4.0
+Stable tag: 0.8.2
+Version: 0.8.2
 License: GPLv2 or later
 
 Smooth Scroll Up is a lightweight plugin that creates a customizable "Scroll to top" feature in any post/page of your WordPress website.
@@ -18,7 +18,7 @@ Smooth Scroll Up is a lightweight plugin that creates a customizable "Scroll to 
 Smooth Scroll Up is a lightweight plugin that creates a customizable "Scroll to top" feature in any post/page of your WordPress website.
 
 = Features =
-* Choose from different scroll up element types (text link, pill, tab)
+* Choose from different scroll up element types (text link, pill, tab, image)
 * Choose scroll up element position (left, center, right)
 * Custom text in scroll up element
 * Option to add an on-click event
@@ -29,9 +29,13 @@ Smooth Scroll Up is a lightweight plugin that creates a customizable "Scroll to 
 
 = Translations included =
 * Arabic
+* Bulgarian
 * French
+* German
 * Greek
 * Romanian
+* Slovak
+* Spanish
 
 New translations are very welcome - please submit them via [WP-Translations](http://wp-translations.org/ "WP-Translations").
 This plugin's WP-Translations page is [https://www.transifex.com/projects/p/smooth-scroll-up/](https://www.transifex.com/projects/p/smooth-scroll-up/ "WP-Translations").
@@ -57,6 +61,11 @@ Go to "Settings -> "Scroll Up Option" and choose the option you want.
 2. Scroll Up in action
 
 == Changelog ==
+
+= 0.8.2 =
+* Added Bulgarian, German, Slovak, Spanish translation
+* Compatibility with WordPress 4.0
+* New plugin icon for plugin installer!
 
 = 0.8.1 =
 * Added image support after high demand (to do: be able to upload custom image via uploader)
