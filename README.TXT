@@ -4,7 +4,7 @@ Plugin URI: http://wordpress.org/extend/plugins/smooth-scroll-up/
 Author URI: http://www.kouratoras.gr
 Author: Konstantinos Kouratoras
 Contributors: kouratoras
-Tags: scroll up, scroll to top, back to top, navigation, scroll, back, top, up
+Tags: back to top, scroll to top, scroll, scroll top, scroll back to top, scroll up, arrow, link to top, back to top, smooth scroll, top, up, back, navigation
 Requires at least: 3.2
 Tested up to: 4.0
 Stable tag: 0.8.2
