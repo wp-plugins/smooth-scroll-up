@@ -6,13 +6,13 @@
   Author URI: http://www.kouratoras.gr
   Author: Konstantinos Kouratoras
   Contributors: kouratoras
-  Tags: back, back to top, navigation, scroll, scroll to top, scroll top, scroll up, top, up
+  Tags: scroll up, scroll to top, back to top, navigation, scroll, back, top, up
   Requires at least: 3.2
   Tested up to: 4.0
   Stable tag: 0.8.2
   Version: 0.8.2
   License: GPLv2 or later
-  Description: Smooth Scroll Up is a lightweight plugin that creates a customizable "Scroll to top" feature in any post/page of your WordPress website.
+  Description: Smooth Scroll Up is a lightweight plugin that creates a customizable "Scroll to top / Back to top" feature in any post/page of your WordPress website.
 
   Copyright 2012 Konstantinos Kouratoras (kouratoras@gmail.com)
 
