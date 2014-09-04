@@ -1,132 +1,233 @@
 <?php
+add_action( 'admin_menu', 'scrollup_add_admin_menu' );
+add_action( 'admin_init', 'scrollup_settings_init' );
 
-class ScrollUpOptions {
 
-	public function plugin_add_options() {
-		add_options_page(__('Scroll Up Options', 'scrollup'), __('Scroll Up Options', 'scrollup'), 'manage_options', 'scrollupoptions', array(&$this, 'plugin_options_page'));
-	}
+function scrollup_add_admin_menu(  ) { 
 
-	function plugin_options_page() {
+	add_options_page( 'Smooth Scroll Up', 'Smooth Scroll Up', 'manage_options', 'smooth_scroll_up', 'scroll_up_options_page' );
 
-		$opt_name = array(
-		    'scrollup_text' => 'scrollup_text',
-		    'scrollup_type' => 'scrollup_type',
-		    'scrollup_show' => 'scrollup_show',
-		    'scrollup_mobile' => 'scrollup_mobile',
-		    'scrollup_position' => 'scrollup_position',
-		    'scrollup_distance' => 'scrollup_distance',
-		    'scrollup_animation' => 'scrollup_animation',
-		    'scrollup_attr' => 'scrollup_attr',
-		);
-		$hidden_field_name = 'scrollup_submit_hidden';
+}
 
-		$opt_val = array(
-		    'scrollup_text' => get_option($opt_name['scrollup_text']),
-		    'scrollup_type' => get_option($opt_name['scrollup_type']),
-		    'scrollup_show' => get_option($opt_name['scrollup_show']),
-		    'scrollup_mobile' => get_option($opt_name['scrollup_mobile']),
-		    'scrollup_position' => get_option($opt_name['scrollup_position']),
-		    'scrollup_distance' => get_option($opt_name['scrollup_distance']),
-		    'scrollup_animation' => get_option($opt_name['scrollup_animation']),
-		    'scrollup_attr' => get_option($opt_name['scrollup_attr'])
-		);
 
-		if (isset($_POST[$hidden_field_name]) && $_POST[$hidden_field_name] == 'Y') {
-			$opt_val = array(
-			    'scrollup_text' => stripslashes(esc_html(esc_attr(($_POST[$opt_name['scrollup_text']])))),
-			    'scrollup_type' => $_POST[$opt_name['scrollup_type']],
-			    'scrollup_show' => $_POST[$opt_name['scrollup_show']],
-			    'scrollup_mobile' => $_POST[$opt_name['scrollup_mobile']],
-			    'scrollup_position' => $_POST[$opt_name['scrollup_position']],
-			    'scrollup_distance' => stripslashes(esc_html(esc_attr(($_POST[$opt_name['scrollup_distance']])))),
-			    'scrollup_animation' => $_POST[$opt_name['scrollup_animation']],
-			    'scrollup_attr' => stripslashes(esc_html(esc_attr(($_POST[$opt_name['scrollup_attr']]))))
-			);
-			update_option($opt_name['scrollup_text'], $opt_val['scrollup_text']);
-			update_option($opt_name['scrollup_type'], $opt_val['scrollup_type']);
-			update_option($opt_name['scrollup_show'], $opt_val['scrollup_show']);
-			update_option($opt_name['scrollup_mobile'], $opt_val['scrollup_mobile']);
-			update_option($opt_name['scrollup_position'], $opt_val['scrollup_position']);
-			update_option($opt_name['scrollup_distance'], $opt_val['scrollup_distance']);
-			update_option($opt_name['scrollup_animation'], $opt_val['scrollup_animation']);
-			update_option($opt_name['scrollup_attr'], $opt_val['scrollup_attr']);
-			?>
-			<div id="message" class="updated fade">
-				<p><strong>
-						<?php _e('Options saved.', 'scrollup'); ?>
-					</strong></p>
-			</div>
-			<?php
-		}
-		?>
+function scrollup_settings_exist(  ) { 
 
-		<div class="wrap">
-			<h2><?php _e('Scroll Up Options', 'scrollup'); ?></h2>
-			<form name="att_img_options" method="post" action="<?php echo str_replace('%7E', '~', $_SERVER['REQUEST_URI']); ?>">
-				<input type="hidden" name="<?php echo $hidden_field_name; ?>" value="Y">
+	if( false == get_option( 'scroll_up_settings' ) ) { 
 
-				<p><label for=""><?php _e('Text', 'scrollup'); ?>:</label>
-					<input type="text" name="<?php echo $opt_name['scrollup_text']; ?>" id="<?php echo $opt_name['scrollup_text']; ?>" value="<?php echo $opt_val['scrollup_text']; ?>"/>
-				</p>
-
-				<p><label for=""><?php _e('Type', 'scrollup'); ?>:</label>
-					<select name="<?php echo $opt_name['scrollup_type']; ?>">
-						<option value="image" <?php echo ($opt_val['scrollup_type'] == "image") ? 'selected="selected"' : ''; ?> ><?php _e('Image', 'scrollup'); ?></option>
-						<option value="link" <?php echo ($opt_val['scrollup_type'] == "link") ? 'selected="selected"' : ''; ?> ><?php _e('Text link', 'scrollup'); ?></option>
-						<option value="pill" <?php echo ($opt_val['scrollup_type'] == "pill") ? 'selected="selected"' : ''; ?> ><?php _e('Pill', 'scrollup'); ?></option>
-						<option value="tab" <?php echo ($opt_val['scrollup_type'] == "tab") ? 'selected="selected"' : ''; ?> ><?php _e('Tab', 'scrollup'); ?></option>
-					</select>
-				</p>
-
-				<p><label for=""><?php _e('Position', 'scrollup'); ?>:</label>
-					<select name="<?php echo $opt_name['scrollup_position']; ?>">
-						<option value="left" <?php echo ($opt_val['scrollup_position'] == "left") ? 'selected="selected"' : ''; ?> ><?php _e('Left', 'scrollup'); ?></option>
-						<option value="right" <?php echo ($opt_val['scrollup_position'] == "right") ? 'selected="selected"' : ''; ?> ><?php _e('Right', 'scrollup'); ?></option>
-						<option value="center" <?php echo ($opt_val['scrollup_position'] == "center") ? 'selected="selected"' : ''; ?> ><?php _e('Center', 'scrollup'); ?></option>
-					</select>
-				</p>
-
-				<p><label for=""><?php _e('Show in homepage', 'scrollup'); ?>:</label>
-					<select name="<?php echo $opt_name['scrollup_show']; ?>">
-						<option value="0" <?php echo ($opt_val['scrollup_show'] == "0") ? 'selected="selected"' : ''; ?> ><?php _e('No', 'scrollup'); ?></option>
-						<option value="1" <?php echo ($opt_val['scrollup_show'] == "1") ? 'selected="selected"' : ''; ?> ><?php _e('Yes', 'scrollup'); ?></option>
-					</select>
-				</p>
-
-				<p><label for=""><?php _e('Show in mobile devices', 'scrollup'); ?>:</label>
-					<select name="<?php echo $opt_name['scrollup_mobile']; ?>">
-						<option value="0" <?php echo ($opt_val['scrollup_mobile'] == "0") ? 'selected="selected"' : ''; ?> ><?php _e('No', 'scrollup'); ?></option>
-						<option value="1" <?php echo ($opt_val['scrollup_mobile'] == "1") ? 'selected="selected"' : ''; ?> ><?php _e('Yes', 'scrollup'); ?></option>
-					</select>
-				</p>
-
-				<p><label for=""><?php _e('Distance from top before showing scroll up element', 'scrollup'); ?>:</label>
-					<input type="text" name="<?php echo $opt_name['scrollup_distance']; ?>" id="<?php echo $opt_name['scrollup_distance']; ?>" value="<?php echo $opt_val['scrollup_distance']; ?>"/>px
-				</p>
-
-				<p><label for=""><?php _e('Show animation', 'scrollup'); ?>:</label>
-					<select name="<?php echo $opt_name['scrollup_animation']; ?>">
-						<option value="fade" <?php echo ($opt_val['scrollup_animation'] == "fade") ? 'selected="selected"' : ''; ?> ><?php _e('Fade', 'scrollup'); ?></option>
-						<option value="slide" <?php echo ($opt_val['scrollup_animation'] == "slide") ? 'selected="selected"' : ''; ?> ><?php _e('Slide', 'scrollup'); ?></option>
-						<option value="none" <?php echo ($opt_val['scrollup_animation'] == "none") ? 'selected="selected"' : ''; ?> ><?php _e('None', 'scrollup'); ?></option>
-					</select>
-				</p>
-
-				<p><label for=""><?php _e('Onclick event', 'scrollup'); ?>:</label>
-					<input type="text" name="<?php echo $opt_name['scrollup_attr']; ?>" id="<?php echo $opt_name['scrollup_attr']; ?>" value="<?php echo $opt_val['scrollup_attr']; ?>"/>
-					<span style="font-size:11px;font-style:italic;">
-						<?php
-							$message = sprintf( __('example: type %s in order to add an event %s' , 'scrollup') , '<code>exit()</code>', '<code>exit()</code>' );
-							echo $message;
-						?>
-					</span>
-				</p>
-
-				<p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="<?php _e('Save Changes', 'scrollup'); ?>"></p>
-			</form>
-
-			<?php
-		}
+		add_option( 'scroll_up_settings' );
 
 	}
+
+}
+
+
+function scrollup_settings_init(  ) { 
+
+	register_setting( 'scrollup_options_page', 'scrollup_settings' );
 	
+	add_settings_section(
+		'scrollup_options_section', 
+		__( 'Options', 'scrollup' ), 
+		'scrollup_options_section_callback', 
+		'scrollup_options_page'
+	);
+	
+	add_settings_field( 
+		'scrollup_text', 
+		__( 'Text', 'scrollup' ), 
+		'scrollup_text_render', 
+		'scrollup_options_page', 
+		'scrollup_options_section' 
+	);
+
+	add_settings_field( 
+		'scrollup_type', 
+		__( 'Type', 'scrollup' ), 
+		'scrollup_type_render', 
+		'scrollup_options_page', 
+		'scrollup_options_section' 
+	);
+
+	add_settings_field( 
+		'scrollup_position', 
+		__( 'Position', 'scrollup' ), 
+		'scrollup_position_render', 
+		'scrollup_options_page', 
+		'scrollup_options_section' 
+	);
+
+	add_settings_field( 
+		'scrollup_show', 
+		__( 'Show in homepage', 'scrollup' ), 
+		'scrollup_show_render', 
+		'scrollup_options_page', 
+		'scrollup_options_section' 
+	);
+
+	add_settings_field( 
+		'scrollup_mobile', 
+		__( 'Show in mobile devices', 'scrollup' ), 
+		'scrollup_mobile_render', 
+		'scrollup_options_page', 
+		'scrollup_options_section' 
+	);
+	
+	add_settings_field( 
+		'scrollup_animation', 
+		__( 'Show animation', 'scrollup' ), 
+		'scrollup_animation_render', 
+		'scrollup_options_page', 
+		'scrollup_options_section' 
+	);
+
+	add_settings_field( 
+		'scrollup_distance', 
+		__( 'Distance from top before showing scroll up element', 'scrollup' ), 
+		'scrollup_distance_render', 
+		'scrollup_options_page', 
+		'scrollup_options_section' 
+	);
+
+	add_settings_field( 
+		'scrollup_attr', 
+		__( 'Onclick event', 'scrollup' ), 
+		'scrollup_attr_render', 
+		'scrollup_options_page', 
+		'scrollup_options_section' 
+	);
+
+}
+
+
+function scrollup_text_render(  ) { 
+
+	$options = get_option( 'scrollup_settings' );
+	?>
+	<input type='text' name='scrollup_settings[scrollup_text]' value='<?php echo $options['scrollup_text']; ?>'>
+	<?php
+
+}
+
+
+function scrollup_type_render(  ) { 
+
+	$options = get_option( 'scrollup_settings' );
+	?>
+	<select name='scrollup_settings[scrollup_type]'>
+		<option value='image' <?php selected( $options['scrollup_type'], 'image' ); ?>><?php _e('Image', 'scrollup'); ?></option>
+		<option value='link' <?php selected( $options['scrollup_type'], 'link' ); ?>><?php _e('Text link', 'scrollup'); ?></option>
+		<option value='pill' <?php selected( $options['scrollup_type'], 'pill' ); ?>><?php _e('Pill', 'scrollup'); ?></option>
+		<option value='tab' <?php selected( $options['scrollup_type'], 'tab' ); ?>><?php _e('Tab', 'scrollup'); ?></option>
+	</select>
+
+<?php
+
+}
+
+
+function scrollup_position_render(  ) { 
+
+	$options = get_option( 'scrollup_settings' );
+	?>
+	<select name='scrollup_settings[scrollup_position]'>
+		<option value='left' <?php selected( $options['scrollup_position'], 'left' ); ?>><?php _e('Left', 'scrollup'); ?></option>
+		<option value='right' <?php selected( $options['scrollup_position'], 'right' ); ?>><?php _e('Right', 'scrollup'); ?></option>
+		<option value='center' <?php selected( $options['scrollup_position'], 'center' ); ?>><?php _e('Center', 'scrollup'); ?></option>
+	</select>
+
+<?php
+
+}
+
+
+function scrollup_show_render(  ) { 
+
+	$options = get_option( 'scrollup_settings' );
+	?>
+	<select name='scrollup_settings[scrollup_show]'>
+		<option value='0' <?php selected( $options['scrollup_show'], '0' ); ?>><?php _e('No', 'scrollup'); ?></option>
+		<option value='1' <?php selected( $options['scrollup_show'], '1' ); ?>><?php _e('Yes', 'scrollup'); ?></option>
+	</select>
+
+<?php
+
+}
+
+
+function scrollup_mobile_render(  ) { 
+
+	$options = get_option( 'scrollup_settings' );
+	?>
+	<select name='scrollup_settings[scrollup_mobile]'>
+		<option value='0' <?php selected( $options['scrollup_mobile'], '0' ); ?>><?php _e('No', 'scrollup'); ?></option>
+		<option value='1' <?php selected( $options['scrollup_mobile'], '1' ); ?>><?php _e('Yes', 'scrollup'); ?></option>
+	</select>
+
+<?php
+
+}
+
+
+function scrollup_distance_render(  ) { 
+
+	$options = get_option( 'scrollup_settings' );
+	?>
+	<input type='text' name='scrollup_settings[scrollup_distance]' value='<?php echo $options['scrollup_distance']; ?>'>
+	<span style="font-size:11px;font-style:italic;">px</span>
+	<?php
+
+}
+
+
+function scrollup_animation_render(  ) { 
+
+	$options = get_option( 'scrollup_settings' );
+	?>
+	<select name='scrollup_settings[scrollup_animation]'>
+		<option value='0' <?php selected( $options['scrollup_animation'], '0' ); ?>><?php _e('No', 'scrollup'); ?></option>
+		<option value='1' <?php selected( $options['scrollup_animation'], '1' ); ?>><?php _e('Yes', 'scrollup'); ?></option>
+	</select>
+
+<?php
+
+}
+
+
+function scrollup_attr_render(  ) { 
+
+	$options = get_option( 'scrollup_settings' );
+	?>
+	<input type='text' name='scrollup_settings[scrollup_attr]' value='<?php echo $options['scrollup_attr']; ?>'>
+	<?php
+	echo '<span style="font-size:11px;font-style:italic;">';
+	echo sprintf( __('example: type %s in order to add an event %s' , 'scrollup') , '<code>exit()</code>', '<code>exit()</code>' );
+	echo '</span>';
+}
+
+
+function scrollup_options_section_callback(  ) { 
+
+	echo __( 'This section contains options for setting up Smooth Scroll Up plugin', 'scrollup' );
+
+}
+
+
+function scroll_up_options_page(  ) { 
+
+	?>
+	<form action='options.php' method='post'>
+		
+		<h2><?php echo __( 'Smooth Scroll Up', 'scrollup' ); ?></h2>
+		
+		<?php
+		settings_fields( 'scrollup_options_page' );
+		do_settings_sections( 'scrollup_options_page' );
+		submit_button();
+		?>
+		
+	</form>
+	<?php
+
+}
+
+?>

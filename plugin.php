@@ -9,8 +9,8 @@
   Tags: back to top, scroll to top, scroll, scroll top, scroll back to top, scroll up, arrow, link to top, back to top, smooth scroll, top, up, back, navigation
   Requires at least: 3.2
   Tested up to: 4.0
-  Stable tag: 0.8.2
-  Version: 0.8.2
+  Stable tag: 0.8.3
+  Version: 0.8.3
   License: GPLv2 or later
   Description: Smooth Scroll Up is a lightweight plugin that creates a customizable "Scroll to top / Back to top" feature in any post/page of your WordPress website.
 
@@ -36,7 +36,7 @@ define( 'SMTH_SCRL_UP_PLUGIN_NAME', 'Smooth Scroll Up' );
 class ScrollUp {
 
 	private $detector;
-	private $inHome;
+	private $settings;
 
 	/* -------------------------------------------------- */
 	/* Constructor
@@ -55,10 +55,12 @@ class ScrollUp {
 
 		//Options Page
 		require_once( plugin_dir_path(__FILE__) . '/lib/options.php' );
-		$myScrollUpOptions = new ScrollUpOptions();
-		add_action('admin_menu', array(&$myScrollUpOptions, 'plugin_add_options'));
-
-		if (!(get_option('scrollup_mobile', '0') == 0 && ($this->detector->isMobile() || $this->detector->isIphone()))) {
+		
+		//Fetch settings
+		$this->settings = get_option('scrollup_settings');
+		
+		$scrollup_mobile = ($this->settings['scrollup_mobile'] ? $this->settings['scrollup_mobile'] : '0');
+		if (!($scrollup_mobile == 0 && ($this->detector->isMobile() || $this->detector->isIphone()))) {
 			
 			//Register scripts and styles
 			add_action('wp_enqueue_scripts', array(&$this, 'register_plugin_scripts'));
@@ -88,17 +90,18 @@ class ScrollUp {
 	}
 	
 	function plugin_js() {
-		$scrollup_show = get_option('scrollup_show', '0');
+		
+		$scrollup_show = ($this->settings['scrollup_show'] ? $this->settings['scrollup_show'] : '0');
 
 		if ($scrollup_show == "1" || $scrollup_show == "0" && (!is_home() || !is_front_page())) {
 			
 			//Fetch options
-			$scrollup_type = get_option('scrollup_type', 'tab');
-			$scrollup_position = get_option('scrollup_position', 'left');
-			$scrollup_text = str_replace("&#039;", "\'", html_entity_decode(get_option('scrollup_text', 'Scroll to top')));
-			$scrollup_distance = (str_replace("&#039;", "\'", html_entity_decode(get_option('scrollup_distance', ''))) != '' ? str_replace("&#039;", "\'", html_entity_decode(get_option('scrollup_distance', ''))) : '300');
-			$scrollup_animation = get_option('scrollup_animation', 'fade');
-			$scrollup_attr = str_replace("&#039;", "\'", html_entity_decode(get_option('scrollup_attr', '')));
+			$scrollup_type = ($this->settings['scrollup_type'] ? $this->settings['scrollup_type'] : 'tab');
+			$scrollup_position = ($this->settings['scrollup_position'] ? $this->settings['scrollup_position'] : 'right');
+			$scrollup_text = ($this->settings['scrollup_text'] ? html_entity_decode($this->settings['scrollup_text']) : 'Scroll to top');
+			$scrollup_distance = ($this->settings['scrollup_distance'] ? html_entity_decode($this->settings['scrollup_distance']) : '300');
+			$scrollup_animation = ($this->settings['scrollup_animation'] ? $this->settings['scrollup_animation'] : 'fade');
+			$scrollup_attr = ($this->settings['scrollup_attr'] ? html_entity_decode($this->settings['scrollup_attr']) : '');
 			
 			//Scroll up type class
 			$scrollup_type_class = 'scrollup-tab';
