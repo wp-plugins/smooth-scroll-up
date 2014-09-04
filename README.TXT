@@ -61,8 +61,8 @@ Since version 0.8.3, we redeveloped the whole options page in order to be compat
 
 == Screenshots ==
 
-1. Scroll Up settings page
-2. Scroll Up in action
+1. Smooth Scroll Up settings page
+2. Smooth Scroll Up in action
 
 == Changelog ==
 
