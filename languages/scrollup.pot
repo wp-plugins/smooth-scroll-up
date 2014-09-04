@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Smooth Scroll Up\n"
-"POT-Creation-Date: 2014-08-13 12:59+0200\n"
-"PO-Revision-Date: 2014-08-13 13:00+0200\n"
+"POT-Creation-Date: 2014-09-04 15:49+0200\n"
+"PO-Revision-Date: 2014-09-04 15:49+0200\n"
 "Last-Translator: Konstantinos Kouratoras <kouratoras@gmail.com>\n"
 "Language-Team: Konstantinos Kouratoras <kouratoras@gmail.com>\n"
 "Language: en_GB\n"
@@ -18,103 +18,91 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: lib/options.php:6 lib/options.php:64
-msgid "Scroll Up Options"
+#: lib/options.php:30
+msgid "Options"
 msgstr ""
 
-#: lib/options.php:56
-msgid "Options saved."
-msgstr ""
-
-#: lib/options.php:68
+#: lib/options.php:37
 msgid "Text"
 msgstr ""
 
-#: lib/options.php:72
+#: lib/options.php:45
 msgid "Type"
 msgstr ""
 
-#: lib/options.php:74
-msgid "Image"
-msgstr ""
-
-#: lib/options.php:75
-msgid "Text link"
-msgstr ""
-
-#: lib/options.php:76
-msgid "Pill"
-msgstr ""
-
-#: lib/options.php:77
-msgid "Tab"
-msgstr ""
-
-#: lib/options.php:81
+#: lib/options.php:53
 msgid "Position"
 msgstr ""
 
-#: lib/options.php:83
-msgid "Left"
-msgstr ""
-
-#: lib/options.php:84
-msgid "Right"
-msgstr ""
-
-#: lib/options.php:85
-msgid "Center"
-msgstr ""
-
-#: lib/options.php:89
+#: lib/options.php:61
 msgid "Show in homepage"
 msgstr ""
 
-#: lib/options.php:91 lib/options.php:98
-msgid "No"
-msgstr ""
-
-#: lib/options.php:92 lib/options.php:99
-msgid "Yes"
-msgstr ""
-
-#: lib/options.php:96
+#: lib/options.php:69
 msgid "Show in mobile devices"
 msgstr ""
 
-#: lib/options.php:103
-msgid "Distance from top before showing scroll up element"
-msgstr ""
-
-#: lib/options.php:107
+#: lib/options.php:77
 msgid "Show animation"
 msgstr ""
 
-#: lib/options.php:109
-msgid "Fade"
+#: lib/options.php:85
+msgid "Distance from top before showing scroll up element"
 msgstr ""
 
-#: lib/options.php:110
-msgid "Slide"
-msgstr ""
-
-#: lib/options.php:111
-msgid "None"
-msgstr ""
-
-#: lib/options.php:115
+#: lib/options.php:93
 msgid "Onclick event"
 msgstr ""
 
+#: lib/options.php:117
+msgid "Image"
+msgstr ""
+
+#: lib/options.php:118
+msgid "Text link"
+msgstr ""
+
 #: lib/options.php:119
+msgid "Pill"
+msgstr ""
+
+#: lib/options.php:120
+msgid "Tab"
+msgstr ""
+
+#: lib/options.php:133
+msgid "Left"
+msgstr ""
+
+#: lib/options.php:134
+msgid "Right"
+msgstr ""
+
+#: lib/options.php:135
+msgid "Center"
+msgstr ""
+
+#: lib/options.php:148 lib/options.php:162 lib/options.php:187
+msgid "No"
+msgstr ""
+
+#: lib/options.php:149 lib/options.php:163 lib/options.php:188
+msgid "Yes"
+msgstr ""
+
+#: lib/options.php:203
 #, php-format
 msgid "example: type %s in order to add an event %s"
 msgstr ""
 
-#: lib/options.php:125
-msgid "Save Changes"
+#: lib/options.php:210
+msgid "This section contains options for setting up Smooth Scroll Up plugin"
 msgstr ""
 
-#: plugin.php:93
+#: lib/options.php:220
+msgid "Smooth Scroll Up"
+msgstr ""
+
+#: plugin.php:85
 msgid "Settings"
 msgstr ""
