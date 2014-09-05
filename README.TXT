@@ -7,8 +7,8 @@ Contributors: kouratoras
 Tags: back to top, scroll to top, scroll, scroll top, scroll back to top, scroll up, arrow, link to top, back to top, smooth scroll, top, up, back, navigation
 Requires at least: 3.2
 Tested up to: 4.0
-Stable tag: 0.8.3
-Version: 0.8.3
+Stable tag: 0.8.4
+Version: 0.8.4
 License: GPLv2 or later
 
 Smooth Scroll Up is a lightweight plugin that creates a customizable "Scroll to top / Back to top" feature in any post/page of your WordPress website.
@@ -65,6 +65,9 @@ Since version 0.8.3, we redeveloped the whole options page in order to be compat
 2. Smooth Scroll Up in action
 
 == Changelog ==
+
+= 0.8.4 =
+* Animation fix
 
 = 0.8.3 =
 * Options page compatible with WordPress Settings API (you may have to set your custom options again)

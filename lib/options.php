@@ -184,8 +184,9 @@ function scrollup_animation_render(  ) {
 	$options = get_option( 'scrollup_settings' );
 	?>
 	<select name='scrollup_settings[scrollup_animation]'>
-		<option value='0' <?php selected( $options['scrollup_animation'], '0' ); ?>><?php _e('No', 'scrollup'); ?></option>
-		<option value='1' <?php selected( $options['scrollup_animation'], '1' ); ?>><?php _e('Yes', 'scrollup'); ?></option>
+		<option value='none' <?php selected( $options['scrollup_animation'], 'none' ); ?>><?php _e('None', 'scrollup'); ?></option>
+		<option value='fade' <?php selected( $options['scrollup_animation'], 'fade' ); ?>><?php _e('Fade', 'scrollup'); ?></option>
+		<option value='slide' <?php selected( $options['scrollup_animation'], 'slide' ); ?>><?php _e('Slide', 'scrollup'); ?></option>
 	</select>
 
 <?php
