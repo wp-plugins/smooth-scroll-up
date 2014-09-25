@@ -36,6 +36,7 @@ Smooth Scroll Up is a lightweight plugin that creates a customizable "Scroll to 
 * Romanian
 * Slovak
 * Spanish
+* Turkish
 
 New translations are very welcome - please submit them via [WP-Translations](http://wp-translations.org/ "WP-Translations").
 This plugin's WP-Translations page is [https://www.transifex.com/projects/p/smooth-scroll-up/](https://www.transifex.com/projects/p/smooth-scroll-up/ "WP-Translations").
@@ -68,6 +69,8 @@ Since version 0.8.3, we redeveloped the whole options page in order to be compat
 
 = 0.8.5 =
 * Fixed Settings link in plugins page
+* Added Turkish language
+* Compatibility with WordPress 4.1
 
 = 0.8.4 =
 * Animation fix
