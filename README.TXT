@@ -6,7 +6,7 @@ Author: Konstantinos Kouratoras
 Contributors: kouratoras
 Tags: back to top, scroll to top, scroll, scroll top, scroll back to top, scroll up, arrow, link to top, back to top, smooth scroll, top, up, back, navigation
 Requires at least: 3.2
-Tested up to: 4.0
+Tested up to: 4.1
 Stable tag: 0.8.5
 Version: 0.8.5
 License: GPLv2 or later
