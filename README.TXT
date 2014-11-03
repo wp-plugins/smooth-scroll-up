@@ -7,8 +7,8 @@ Contributors: kouratoras
 Tags: back to top, scroll to top, scroll, scroll top, scroll back to top, scroll up, arrow, link to top, back to top, smooth scroll, top, up, back, navigation
 Requires at least: 3.2
 Tested up to: 4.1
-Stable tag: 0.8.6
-Version: 0.8.6
+Stable tag: 0.8.7
+Version: 0.8.7
 License: GPLv2 or later
 
 Smooth Scroll Up is a lightweight plugin that creates a customizable "Scroll to top / Back to top" feature in any post/page of your WordPress website.
@@ -30,10 +30,13 @@ Smooth Scroll Up is a lightweight plugin that creates a customizable "Scroll to 
 = Translations included =
 * Arabic
 * Bulgarian
+* Dutch
 * French
 * German
 * Greek
+* Hungarian
 * Romanian
+* Russian
 * Slovak
 * Spanish
 * Turkish
@@ -66,6 +69,10 @@ Since version 0.8.3, we redeveloped the whole options page in order to be compat
 2. Smooth Scroll Up in action
 
 == Changelog ==
+
+= 0.8.7 =
+* Added Dutch, Hungarian and Russian language
+* Mobile Detect script updated
 
 = 0.8.6 =
 * Minor bug fix
