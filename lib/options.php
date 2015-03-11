@@ -5,7 +5,7 @@ add_action( 'admin_init', 'scrollup_settings_init' );
 
 function scrollup_add_admin_menu(  ) { 
 
-	add_options_page( 'Smooth Scroll Up', 'Smooth Scroll Up', 'publish_pages', 'smooth_scroll_up', 'scroll_up_options_page' );
+	add_options_page( 'Smooth Scroll Up', 'Smooth Scroll Up', 'manage_options', 'smooth_scroll_up', 'scroll_up_options_page' );
 
 }
 
