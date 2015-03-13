@@ -36,6 +36,7 @@ Smooth Scroll Up is a lightweight plugin that creates a customizable "Scroll to 
 * German
 * Greek
 * Hungarian
+* Portuguese (Brazil)
 * Romanian
 * Russian
 * Slovak
@@ -73,6 +74,7 @@ Since version 0.8.3, we redeveloped the whole options page in order to be compat
 
 = 0.8.9 =
 * Fixed capabilities
+* Added Portuguese (Brazil) language by [BSConsult](http://bsconsult.com.br/) team
 
 = 0.8.8 =
 * Mobile Detect script updated
