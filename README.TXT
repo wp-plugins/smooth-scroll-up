@@ -36,11 +36,13 @@ Smooth Scroll Up is a lightweight plugin that creates a customizable "Scroll to 
 * German
 * Greek
 * Hungarian
+* Italian
 * Portuguese (Brazil)
 * Romanian
 * Russian
 * Slovak
 * Spanish
+* Swedish
 * Turkish
 
 New translations are very welcome - please submit them via [WP-Translations](http://wp-translations.org/ "WP-Translations").
