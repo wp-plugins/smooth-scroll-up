@@ -65,6 +65,14 @@ function scrollup_settings_init(  ) {
 	);
 
 	add_settings_field( 
+		'scrollup_specific_ids', 
+		__( 'Show/hide scroll up element from specific posts or pages', 'scrollup' ), 
+		'scrollup_specific_ids_render', 
+		'scrollup_options_page', 
+		'scrollup_options_section' 
+	);
+
+	add_settings_field( 
 		'scrollup_mobile', 
 		__( 'Show in mobile devices', 'scrollup' ), 
 		'scrollup_mobile_render', 
@@ -178,6 +186,21 @@ function scrollup_distance_render(  ) {
 
 }
 
+function scrollup_specific_ids_render(  ) {
+
+	$options = get_option( 'scrollup_settings' );
+	?>
+	<select name='scrollup_settings[scrollup_specific_ids_show_hide]'>
+		<option value='hide' <?php selected( $options['scrollup_specific_ids_show_hide'], 'hide' ); ?>><?php _e('Hide from', 'scrollup'); ?></option>
+		<option value='show' <?php selected( $options['scrollup_specific_ids_show_hide'], 'show' ); ?>><?php _e('Show only in', 'scrollup'); ?></option>
+	</select>
+	<input type='text' name='scrollup_settings[scrollup_specific_ids]' value='<?php echo $options['scrollup_specific_ids']; ?>'>
+	<?php
+	echo '<span style="font-size:11px;font-style:italic;">';
+	echo sprintf( __('Specify IDs of posts or pages (seperated by commas) and select to show or hide scroll up element' , 'scrollup'));
+	echo '</span>';
+}
+
 
 function scrollup_animation_render(  ) { 
 
@@ -190,7 +213,6 @@ function scrollup_animation_render(  ) {
 	</select>
 
 <?php
-
 }
 
 
